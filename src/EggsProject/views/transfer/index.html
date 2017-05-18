@@ -1,0 +1,71 @@
+﻿<div ng-controller="views.transfer.index as vm">
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-hand-o-right"></i>
+
+                <a href="#">转账管理</a>
+            </li>
+        </ul>
+    </div>
+    <div class="portlet light bordered">
+        <div class="row">
+            <div class="col-xs-8 text-left">
+               
+                <div class="col-md-12">
+                    <div class="input-icon right">
+                        <i ng-click="vm.init()" class="fa fa-search"></i>
+                        <input type="text" class="form-control input-circle" placeholder="按条件搜索" ng-model="vm.filter.account">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 text-right">
+                <button class="btn btn-primary blue" ng-click="vm.auto(1)"><i class="fa fa-plus"></i> 自动转账</button>
+                <button class="btn btn-primary blue" ng-click="vm.auto(0)"><i class="fa fa-plus"></i> 手动转账</button>
+            </div>
+        </div>
+      <div class="row">
+          <!-- 角色列表 -->
+          <table object-table
+                 data="vm.table.data"
+                 check-model="vm.table.checkModel"
+                 display="vm.table.pageConfig.itemsPerPage"
+                 headers="序号,账户,账户类型,是否自动转账"
+                 fields="id,account,payChannel,transferType">
+              <tbody>
+                  <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
+                      <td>
+                          <input type="checkbox" ng-model="::item.checked"  
+                                 ng-click="$event.stopPropagation(); checkOne(item)" />
+                      </td>
+                      <td show-td item="item" name="id"></td>
+                      <td show-td item="item" name="account"></td>
+                      <td >
+                          <span ng-show="item.payChannel==2">微信</span>
+                          <span ng-show="item.payChannel==3">支付宝</span>
+                      </td>
+                      <td >
+                          <span ng-show="item.transferType==0">是</span>
+                          <span ng-show="item.transferType==1">否</span>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+          <!--分页-->
+          <nav class="paging">
+              <obj-pagination conf="vm.table.pageConfig"></obj-pagination>
+          </nav>
+
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

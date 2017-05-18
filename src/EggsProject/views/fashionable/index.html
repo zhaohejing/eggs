@@ -1,0 +1,218 @@
+﻿<div ng-controller="views.fashionable.index as vm">
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-hand-o-right"></i>
+
+                <a href="#">分账管理</a>
+            </li>
+        </ul>
+    </div>
+    <div class="portlet light bordered">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="portlet light">
+                
+                    <div class="portlet-body scrollList portlet-scroll" ng-scrollbar>
+                        <div id="OrganizationUnitEditTree"></div>
+                        <div ng-if="!vm.organizationTree.unitCount" class="text-muted">
+                            暂无组织机构
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="portlet light">
+                    <div class="row">
+                        <div class="col-xs-10 text-left">
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <p class="input-group">
+                                        <input type="text" class="form-control" placeholder="开始时间"
+                                               uib-datepicker-popup readonly
+                                               ng-model="vm.filter.startTime"
+                                               is-open="vm.date.leftopen"
+                                               datepicker-options="vm.date.dateOptions"
+                                               ng-required="true"
+                                               current-text="今天"
+                                               clear-text="清除"
+                                                datetimepicker-neutral-timezone
+                                               close-text="关闭" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"
+                                                    ng-click="vm.date.openleft()">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <p class="input-group">
+                                        <input type="text" class="form-control" placeholder="结束时间"
+                                               uib-datepicker-popup readonly ng-model="vm.filter.endTime"
+                                               is-open="vm.date.rightopen"
+                                               datepicker-options="vm.date.dateOptions"
+                                               ng-required="true"
+                                               current-text="今天"
+                                                datetimepicker-neutral-timezone
+                                               clear-text="清除"
+                                               close-text="关闭" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"
+                                                    ng-click="vm.date.openright()">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-icon right">
+                                    <i ng-click="vm.init()" class="fa fa-search"></i>
+                                    <input type="text" class="form-control input-circle" placeholder="按条件搜索" ng-model="vm.filter.name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-2 text-right">
+                         
+                            <button class="btn btn-primary blue" ng-click="vm.export()"><i class="fa fa-times"></i> 导出</button>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tabbable-line">
+                            <ul class="nav nav-tabs ">
+                                <li ng-class="{ 'active' : vm.action.current == 1 }">
+                                    <a href="#" ng-click="vm.action.action(1)" data-toggle="tab" aria-expanded="true"> 账户 </a>
+                                </li>
+                                <li ng-class="{ 'active' : vm.action.current ==2 }">
+                                    <a href="#" ng-click="vm.action.action(2)" data-toggle="tab" aria-expanded="false"> 商品 </a>
+                                </li>
+                                <li ng-class="{ 'active' : vm.action.current == 3 }">
+                                    <a href="#" ng-click="vm.action.action(3)" data-toggle="tab" aria-expanded="false"> 订单 </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div  ng-if="vm.action.current==1">
+                                   <div class="row">
+                                       <div class="col-xs-4 right">
+                                           <button  class="btn btn-primary blue" ng-click="vm.handlearound()"><i class="fa fa-plus"></i> 手动转账</button>
+                                       </div>
+                                   </div>
+                                    <!-- 账户 -->
+                                    <table object-table
+                                           data="vm.tablea.data"
+                                           check-model="vm.tablea.checkModel"
+                                           display="vm.tablea.pageConfig.itemsPerPage"
+                                           headers="账户,是否为自动账户,微信or支付宝,待转入金额,账户余额"
+                                           fields="account,transferType,payChannel,overage,amount">
+                                        <tbody>
+                                            <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
+                                                <td>
+                                                    <input type="checkbox" ng-model="::item.checked"
+                                                            ng-show="::item.state==1"
+                                                           ng-click="$event.stopPropagation(); checkOne(item)" />
+                                                </td>
+                                                <td show-td item="item" name="account"></td>
+                                                <td>
+                                                    <span ng-show="item.transferType==1">自动转账</span>
+                                                    <span ng-show="item.transferType==0">手动转账</span>
+                                                </td>
+                                                <td>
+                                                    <span ng-show="item.payChannel==3">支付宝</span>
+                                                    <span ng-show="item.payChannel==2">微信</span>
+                                                </td>
+                                                <td show-td item="item" name="overage"></td>
+                                                <td show-td item="item" name="amount"></td>
+                                          
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--分页-->
+                                    <nav class="paging">
+                                        <obj-pagination conf="vm.tablea.pageConfig"></obj-pagination>
+                                    </nav>
+                                </div>
+                                <div  ng-if="vm.action.current==2">
+                                    <!-- 商品 -->
+                                    <table object-table
+                                           data="vm.tableb.data"
+                                           check-model="vm.tableb.checkModel"
+                                           display="vm.tableb.pageConfig.itemsPerPage"
+                                           headers="商品名,点位数,机器数,支付宝账户,支付宝待转入,微信账户,微信待转入"
+                                           fields="productName,boxCount,machineCount,aliAmount,aliOverage,wxAmount,wxOverage">
+                                        <tbody>
+                                            <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
+                                                <td>
+                                                    <input type="checkbox" ng-model="::item.checked"
+                                                           ng-click="$event.stopPropagation(); checkOne(item)" />
+                                                </td>
+                                                <td show-td item="item" name="productName"></td>
+                                                <td show-td item="item" name="boxCount"></td>
+                                                <td show-td item="item" name="machineCount"></td>
+                                                <td show-td item="item" name="aliAmount"></td>
+                                                <td show-td item="item" name="aliOverage"></td>
+                                                <td show-td item="item" name="wxAmount"></td>
+                                                <td show-td item="item" name="wxOverage"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--分页-->
+                                    <nav class="paging">
+                                        <obj-pagination conf="vm.tableb.pageConfig"></obj-pagination>
+                                    </nav>
+                                </div>
+                                <div  ng-if="vm.action.current==3">
+                                    <!-- 账户 -->
+                                    <table object-table
+                                           data="vm.tablec.data"
+                                           check-model="vm.tablec.checkModel"
+                                           display="vm.tablec.pageConfig.itemsPerPage"
+                                           headers="产品名,机器名,机器码,xxx商贸(支付宝)元,三方(支付宝)元,支付宝比例,xxx商贸(微信)元,三方(微信)元,微信比例"
+                                           fields="productName,machineName,machineCode,aliOverage,aliAmount,aliScale,wxOverage,wxAmount,,wxScale">
+                                        <tbody>
+                                            <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
+                                                <td>
+                                                    <input type="checkbox" ng-model="::item.checked"
+                                                           ng-click="$event.stopPropagation(); checkOne(item)" />
+                                                </td>
+                                                <!--<td show-td item="item" name="orderId"></td>-->
+                                                <td show-td item="item" name="productName"></td>
+                                                <td show-td item="item" name="machineName"></td>
+                                                <td show-td item="item" name="machineCode"></td>
+                                                <td show-td item="item" name="aliAmount"></td>
+                                                <td show-td item="item" name="aliOverage"></td>
+                                                <td show-td item="item" name="aliScale"></td>
+                                                <td show-td item="item" name="wxAmount"></td>
+                                                <td show-td item="item" name="wxOverage"></td>
+                                                <td show-td item="item" name="wxScale"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--分页-->
+                                    <nav class="paging">
+                                        <obj-pagination conf="vm.tablec.pageConfig"></obj-pagination>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                     
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

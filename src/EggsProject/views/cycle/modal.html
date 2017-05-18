@@ -1,0 +1,41 @@
+﻿<div>
+    <form name="modalform" role="form" novalidate class="form-validation">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                <span ng-if="vm.model.periodType==1">日结时间配置</span>
+                <span ng-if="vm.model.periodType==2">月结时间配置</span>
+            </h4>
+        </div>
+        <div class="modal-body">
+            <div ng-if="vm.model.periodType==1" class="row">
+                <div class="form-group form-md-line-input">
+                    <label class="col-md-4 control-label">T+N打款</label>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" required ng-pattern="/(^[1-9][0-9]$)|(^100&)|(^[1-9]$)$/" 
+                               placeholder="请输入数字(0-100)" ng-class="{'edited':vm.model.periodTime}"
+                                 ng-model="vm.model.periodTime">
+                        <div class="form-control-focus"> </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vm.model.periodType==2" class="row">
+                <div class="form-group form-md-line-input">
+                    <label class="col-md-4 control-label">每月几号打款</label>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" required ng-pattern="/^((0?[1-9])|((1|2)[0-9])|30|31)$/" placeholder="请输入数字(0-31)" ng-class="{'edited':vm.model.periodTime}"  ng-model="vm.model.periodTime">
+                        <div class="form-control-focus"> </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button ng-disabled="vm.saving" type="button" class="btn btn-default" ng-click="vm.cancel()">关闭</button>
+            <button type="submit" button-busy="vm.saving" busy-text="保存"
+                    class="btn btn-primary blue" ng-click="vm.save()"
+                    ng-disabled="modalform.$invalid">
+                <span>保存</span>
+            </button>
+        </div>
+    </form>
+</div>

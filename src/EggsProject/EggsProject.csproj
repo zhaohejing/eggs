@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{31292730-14DC-40AA-92E1-E8222A551347}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EggsProject</RootNamespace>
+    <AssemblyName>EggsProject</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="assets\global\plugins\angularjs\angular-cookies.min.js.map" />
+    <Content Include="assets\global\plugins\angularjs\angular-sanitize.min.js.map" />
+    <Content Include="assets\global\plugins\angularjs\angular-touch.min.js.map" />
+    <Content Include="assets\global\plugins\angularjs\angular.min.js.map" />
+    <Content Include="assets\global\plugins\angularjs\plugins\angular-file-upload\upload.php" />
+    <Content Include="assets\global\plugins\bootstrap-hover-dropdown\LICENSE" />
+    <Content Include="assets\global\plugins\bootstrap-hover-dropdown\README.md" />
+    <Content Include="assets\global\plugins\bootstrap-switch\LICENSE" />
+    <Content Include="assets\global\plugins\bootstrap-switch\README.md" />
+    <Content Include="assets\global\plugins\bootstrap\fonts\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\global\plugins\bootstrap\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\global\plugins\bootstrap\fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\global\plugins\bootstrap\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\global\plugins\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\global\plugins\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\global\plugins\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\global\plugins\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\global\plugins\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="assets\global\plugins\jquery-slimscroll\README.md" />
+    <Content Include="assets\global\plugins\jquery-slimscroll\slimScroll.jquery.json" />
+    <Content Include="assets\global\plugins\morris\less\morris.core.less" />
+    <Content Include="assets\global\plugins\morris\lib\morris.area.coffee" />
+    <Content Include="assets\global\plugins\morris\lib\morris.bar.coffee" />
+    <Content Include="assets\global\plugins\morris\lib\morris.coffee" />
+    <Content Include="assets\global\plugins\morris\lib\morris.donut.coffee" />
+    <Content Include="assets\global\plugins\morris\lib\morris.grid.coffee" />
+    <Content Include="assets\global\plugins\morris\lib\morris.hover.coffee" />
+    <Content Include="assets\global\plugins\morris\lib\morris.line.coffee" />
+    <Content Include="assets\global\plugins\morris\README.md" />
+    <Content Include="assets\global\plugins\morris\spec\lib\area\area_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\bar\bar_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\bar\colours.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\commas_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\donut\donut_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\grid\auto_grid_lines_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\grid\set_data_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\grid\y_label_format_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\hover_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\label_series_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\line\line_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\pad_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\lib\parse_time_spec.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\support\placeholder.coffee" />
+    <Content Include="assets\global\plugins\morris\spec\viz\run.sh" />
+    <Content Include="assets\global\plugins\select2\LICENSE.md" />
+    <Content Include="assets\global\plugins\select2\README.md" />
+    <Content Include="assets\global\plugins\select2\sass\select2-bootstrap.min.scss" />
+    <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.eot" />
+    <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.woff" />
+    <Content Include="assets\global\plugins\sweetalert\sweet-alert.scss" />
+    <Content Include="assets\global\plugins\toastr\toastr.js.map" />
+    <Content Include="assets\global\plugins\toastr\toastr.less" />
+    <Content Include="assets\global\plugins\toastr\toastr.scss" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\global\css\components-md.css" />
+    <Content Include="assets\global\css\components-md.min.css" />
+    <Content Include="assets\global\css\components-rounded.css" />
+    <Content Include="assets\global\css\components-rounded.min.css" />
+    <Content Include="assets\global\css\components.css" />
+    <Content Include="assets\global\css\components.min.css" />
+    <Content Include="assets\global\css\object-table-style.css" />
+    <Content Include="assets\global\css\plugins-md.css" />
+    <Content Include="assets\global\css\plugins-md.min.css" />
+    <Content Include="assets\global\css\plugins.css" />
+    <Content Include="assets\global\css\plugins.min.css" />
+    <Content Include="assets\global\img\accordion-plusminus.png" />
+    <Content Include="assets\global\img\ajax-loading.gif" />
+    <Content Include="assets\global\img\ajax-modal-loading.gif" />
+    <Content Include="assets\global\img\datatable-row-openclose.png" />
+    <Content Include="assets\global\img\input-spinner.gif" />
+    <Content Include="assets\global\img\loading-spinner-blue.gif" />
+    <Content Include="assets\global\img\loading-spinner-default.gif" />
+    <Content Include="assets\global\img\loading-spinner-grey.gif" />
+    <Content Include="assets\global\img\loading.gif" />
+    <Content Include="assets\global\img\overlay-icon.png" />
+    <Content Include="assets\global\img\portlet-collapse-icon-white.png" />
+    <Content Include="assets\global\img\portlet-collapse-icon.png" />
+    <Content Include="assets\global\img\portlet-config-icon-white.png" />
+    <Content Include="assets\global\img\portlet-config-icon.png" />
+    <Content Include="assets\global\img\portlet-expand-icon-white.png" />
+    <Content Include="assets\global\img\portlet-expand-icon.png" />
+    <Content Include="assets\global\img\portlet-reload-icon-white.png" />
+    <Content Include="assets\global\img\portlet-reload-icon.png" />
+    <Content Include="assets\global\img\portlet-remove-icon-white.png" />
+    <Content Include="assets\global\img\portlet-remove-icon.png" />
+    <Content Include="assets\global\img\remove-icon-small.png" />
+    <Content Include="assets\global\img\social\bj.jpg" />
+    <Content Include="assets\global\img\social\efanlogo.png" />
+    <Content Include="assets\global\img\social\qcode.png" />
+    <Content Include="assets\global\img\syncfusion-icons-white.png" />
+    <Content Include="assets\global\img\syncfusion-icons.png" />
+    <Content Include="assets\global\plugins\abp\abp.js" />
+    <Content Include="assets\global\plugins\abp\libs\abp.blockUI.js" />
+    <Content Include="assets\global\plugins\abp\libs\abp.jquery.js" />
+    <Content Include="assets\global\plugins\abp\libs\abp.jtable.js" />
+    <Content Include="assets\global\plugins\abp\libs\abp.moment.js" />
+    <Content Include="assets\global\plugins\abp\libs\abp.signalr.js" />
+    <Content Include="assets\global\plugins\abp\libs\abp.spin.js" />
+    <Content Include="assets\global\plugins\abp\libs\abp.sweet-alert.js" />
+    <Content Include="assets\global\plugins\abp\libs\abp.toastr.js" />
+    <Content Include="assets\global\plugins\abp\libs\angularjs\abp.ng.js" />
+    <Content Include="assets\global\plugins\abp\libs\requirejs\plugins\service.js" />
+    <Content Include="assets\global\plugins\abp\utils\ie10fix.js" />
+    <Content Include="assets\global\plugins\angular-file-upload\angular-file-upload.min.js" />
+    <Content Include="assets\global\plugins\angular-locale_zh-cn.js" />
+    <Content Include="assets\global\plugins\angularjs\angular-cookies.min.js" />
+    <Content Include="assets\global\plugins\angularjs\angular-sanitize.min.js" />
+    <Content Include="assets\global\plugins\angularjs\angular-touch.min.js" />
+    <Content Include="assets\global\plugins\angularjs\angular.min.js" />
+    <Content Include="assets\global\plugins\angularjs\plugins\angular-file-upload\angular-file-upload.min.js" />
+    <Content Include="assets\global\plugins\angularjs\plugins\angular-ui-router.min.js" />
+    <Content Include="assets\global\plugins\angularjs\plugins\ocLazyLoad.min.js" />
+    <Content Include="assets\global\plugins\angularjs\plugins\ui-bootstrap-tpls.min.js" />
+    <Content Include="assets\global\plugins\angularjs\plugins\ui-select\select.min.css" />
+    <Content Include="assets\global\plugins\angularjs\plugins\ui-select\select.min.js" />
+    <Content Include="assets\global\plugins\bootstrap-hover-dropdown\bootstrap-hover-dropdown.js" />
+    <Content Include="assets\global\plugins\bootstrap-hover-dropdown\bootstrap-hover-dropdown.min.js" />
+    <Content Include="assets\global\plugins\bootstrap-switch\css\bootstrap-switch.css" />
+    <Content Include="assets\global\plugins\bootstrap-switch\css\bootstrap-switch.min.css" />
+    <Content Include="assets\global\plugins\bootstrap-switch\js\bootstrap-switch.js" />
+    <Content Include="assets\global\plugins\bootstrap-switch\js\bootstrap-switch.min.js" />
+    <Content Include="assets\global\plugins\bootstrap\css\bootstrap.css" />
+    <Content Include="assets\global\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\global\plugins\bootstrap\fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\global\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="assets\global\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\global\plugins\font-awesome\css\font-awesome.css" />
+    <Content Include="assets\global\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="assets\global\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\global\plugins\jquery-slimscroll\jquery.slimscroll.js" />
+    <Content Include="assets\global\plugins\jquery-slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="assets\global\plugins\jquery-validation\js\additional-methods.min.js" />
+    <Content Include="assets\global\plugins\jquery-validation\js\jquery.validate.min.js" />
+    <Content Include="assets\global\plugins\jquery.blockui.min.js" />
+    <Content Include="assets\global\plugins\jquery.cookie.js" />
+    <Content Include="assets\global\plugins\jquery.min.js" />
+    <Content Include="assets\global\plugins\jquery.sparkline.min.js" />
+    <Content Include="assets\global\plugins\js.cookie.min.js" />
+    <Content Include="assets\global\plugins\jstree\dist\jstree.js" />
+    <Content Include="assets\global\plugins\jstree\dist\jstree.min.js" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default-dark\32px.png" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default-dark\40px.png" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default-dark\style.css" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default-dark\style.min.css" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default-dark\throbber.gif" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default\32px.png" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default\32px_line.png" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default\32px_original.png" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default\40px.png" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default\style.css" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default\style.min.css" />
+    <Content Include="assets\global\plugins\jstree\dist\themes\default\throbber.gif" />
+    <Content Include="assets\global\plugins\moment.min.js" />
+    <Content Include="assets\global\plugins\morris\examples\area-as-line.html" />
+    <Content Include="assets\global\plugins\morris\examples\area.html" />
+    <Content Include="assets\global\plugins\morris\examples\bar-colors.html" />
+    <Content Include="assets\global\plugins\morris\examples\bar-no-axes.html" />
+    <Content Include="assets\global\plugins\morris\examples\bar.html" />
+    <Content Include="assets\global\plugins\morris\examples\days.html" />
+    <Content Include="assets\global\plugins\morris\examples\decimal-custom-hover.html" />
+    <Content Include="assets\global\plugins\morris\examples\diagonal-xlabels-bar.html" />
+    <Content Include="assets\global\plugins\morris\examples\diagonal-xlabels.html" />
+    <Content Include="assets\global\plugins\morris\examples\donut-colors.html" />
+    <Content Include="assets\global\plugins\morris\examples\donut-formatter.html" />
+    <Content Include="assets\global\plugins\morris\examples\donut.html" />
+    <Content Include="assets\global\plugins\morris\examples\dst.html" />
+    <Content Include="assets\global\plugins\morris\examples\events.html" />
+    <Content Include="assets\global\plugins\morris\examples\goals.html" />
+    <Content Include="assets\global\plugins\morris\examples\lib\example.css" />
+    <Content Include="assets\global\plugins\morris\examples\lib\example.js" />
+    <Content Include="assets\global\plugins\morris\examples\months-no-smooth.html" />
+    <Content Include="assets\global\plugins\morris\examples\negative.html" />
+    <Content Include="assets\global\plugins\morris\examples\no-grid.html" />
+    <Content Include="assets\global\plugins\morris\examples\non-continuous.html" />
+    <Content Include="assets\global\plugins\morris\examples\non-date.html" />
+    <Content Include="assets\global\plugins\morris\examples\quarters.html" />
+    <Content Include="assets\global\plugins\morris\examples\resize.html" />
+    <Content Include="assets\global\plugins\morris\examples\stacked_bars.html" />
+    <Content Include="assets\global\plugins\morris\examples\timestamps.html" />
+    <Content Include="assets\global\plugins\morris\examples\updating.html" />
+    <Content Include="assets\global\plugins\morris\examples\weeks.html" />
+    <Content Include="assets\global\plugins\morris\examples\years.html" />
+    <Content Include="assets\global\plugins\morris\examples\_template.html" />
+    <Content Include="assets\global\plugins\morris\morris.css" />
+    <Content Include="assets\global\plugins\morris\morris.js" />
+    <Content Include="assets\global\plugins\morris\morris.min.js" />
+    <Content Include="assets\global\plugins\morris\raphael-min.js" />
+    <Content Include="assets\global\plugins\morris\spec\specs.html" />
+    <Content Include="assets\global\plugins\morris\spec\viz\examples.js" />
+    <Content Include="assets\global\plugins\morris\spec\viz\exemplary\area0.png" />
+    <Content Include="assets\global\plugins\morris\spec\viz\exemplary\bar0.png" />
+    <Content Include="assets\global\plugins\morris\spec\viz\exemplary\line0.png" />
+    <Content Include="assets\global\plugins\morris\spec\viz\exemplary\stacked_bar0.png" />
+    <Content Include="assets\global\plugins\morris\spec\viz\test.html" />
+    <Content Include="assets\global\plugins\morris\spec\viz\visual_specs.js" />
+    <Content Include="assets\global\plugins\ng-sweet-alert.js" />
+    <Content Include="assets\global\plugins\object-table.js" />
+    <Content Include="assets\global\plugins\plupload\angular-local-storage.js" />
+    <Content Include="assets\global\plugins\plupload\qupload.js" />
+    <Content Include="assets\global\plugins\qrcode.js" />
+    <Content Include="assets\global\plugins\select2\css\select2-bootstrap.min.css" />
+    <Content Include="assets\global\plugins\select2\css\select2.css" />
+    <Content Include="assets\global\plugins\select2\css\select2.min.css" />
+    <Content Include="assets\global\plugins\select2\js\i18n\ar.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\az.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\bg.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\ca.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\cs.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\da.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\de.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\el.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\en.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\es.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\et.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\eu.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\fa.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\fi.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\fr.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\gl.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\he.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\hi.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\hr.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\hu.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\id.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\is.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\it.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\ja.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\km.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\ko.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\lt.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\lv.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\mk.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\ms.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\nb.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\nl.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\pl.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\pt-BR.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\pt.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\ro.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\ru.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\sk.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\sr-Cyrl.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\sr.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\sv.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\th.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\tr.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\uk.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\vi.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\zh-CN.js" />
+    <Content Include="assets\global\plugins\select2\js\i18n\zh-TW.js" />
+    <Content Include="assets\global\plugins\select2\js\select2.full.js" />
+    <Content Include="assets\global\plugins\select2\js\select2.full.min.js" />
+    <Content Include="assets\global\plugins\select2\js\select2.js" />
+    <Content Include="assets\global\plugins\select2\js\select2.min.js" />
+    <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.dev.svg" />
+    <Content Include="assets\global\plugins\simple-line-icons\fonts\Simple-Line-Icons.svg" />
+    <Content Include="assets\global\plugins\simple-line-icons\icons-lte-ie7.js" />
+    <Content Include="assets\global\plugins\simple-line-icons\License.txt" />
+    <Content Include="assets\global\plugins\simple-line-icons\Readme.txt" />
+    <Content Include="assets\global\plugins\simple-line-icons\simple-line-icons.css" />
+    <Content Include="assets\global\plugins\simple-line-icons\simple-line-icons.min.css" />
+    <Content Include="assets\global\plugins\sweetalert\ie9.css" />
+    <Content Include="assets\global\plugins\sweetalert\sweet-alert.css" />
+    <Content Include="assets\global\plugins\sweetalert\sweet-alert.html" />
+    <Content Include="assets\global\plugins\sweetalert\sweet-alert.js" />
+    <Content Include="assets\global\plugins\sweetalert\sweet-alert.min.js" />
+    <Content Include="assets\global\plugins\toastr\toastr.css" />
+    <Content Include="assets\global\plugins\toastr\toastr.js" />
+    <Content Include="assets\global\plugins\toastr\toastr.min.css" />
+    <Content Include="assets\global\plugins\toastr\toastr.min.js" />
+    <Content Include="assets\global\plugins\underscore.min.js" />
+    <Content Include="assets\global\scripts\app.js" />
+    <Content Include="assets\global\scripts\app.min.js" />
+    <Content Include="assets\global\scripts\datatable.js" />
+    <Content Include="assets\global\scripts\datatable.min.js" />
+    <Content Include="assets\layouts\global\scripts\cookie-consent.js" />
+    <Content Include="assets\layouts\global\scripts\cookie-consent.min.js" />
+    <Content Include="assets\layouts\global\scripts\hor-timeline.js" />
+    <Content Include="assets\layouts\global\scripts\hor-timeline.min.js" />
+    <Content Include="assets\layouts\global\scripts\quick-nav.js" />
+    <Content Include="assets\layouts\global\scripts\quick-nav.min.js" />
+    <Content Include="assets\layouts\global\scripts\quick-sidebar.js" />
+    <Content Include="assets\layouts\global\scripts\quick-sidebar.min.js" />
+    <Content Include="assets\layouts\layout\css\custom.css" />
+    <Content Include="assets\layouts\layout\css\custom.min.css" />
+    <Content Include="assets\layouts\layout\css\layout.css" />
+    <Content Include="assets\layouts\layout\css\layout.min.css" />
+    <Content Include="assets\layouts\layout\css\themes\blue.css" />
+    <Content Include="assets\layouts\layout\css\themes\blue.min.css" />
+    <Content Include="assets\layouts\layout\css\themes\darkblue.css" />
+    <Content Include="assets\layouts\layout\css\themes\darkblue.min.css" />
+    <Content Include="assets\layouts\layout\css\themes\default.css" />
+    <Content Include="assets\layouts\layout\css\themes\default.min.css" />
+    <Content Include="assets\layouts\layout\css\themes\grey.css" />
+    <Content Include="assets\layouts\layout\css\themes\grey.min.css" />
+    <Content Include="assets\layouts\layout\css\themes\light.css" />
+    <Content Include="assets\layouts\layout\css\themes\light.min.css" />
+    <Content Include="assets\layouts\layout\css\themes\light2.css" />
+    <Content Include="assets\layouts\layout\css\themes\light2.min.css" />
+    <Content Include="assets\layouts\layout\img\ajax-loading.gif" />
+    <Content Include="assets\layouts\layout\img\ajax-modal-loading.gif" />
+    <Content Include="assets\layouts\layout\img\arrow-down.png" />
+    <Content Include="assets\layouts\layout\img\avatar.png" />
+    <Content Include="assets\layouts\layout\img\avatar1.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar10.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar11.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar1_small.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar2.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar3.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar3_small.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar4.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar5.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar6.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar7.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar8.jpg" />
+    <Content Include="assets\layouts\layout\img\avatar9.jpg" />
+    <Content Include="assets\layouts\layout\img\efanlogo.png" />
+    <Content Include="assets\layouts\layout\img\hor-menu-red-arrow.png" />
+    <Content Include="assets\layouts\layout\img\icon-color-close.png" />
+    <Content Include="assets\layouts\layout\img\icon-color.png" />
+    <Content Include="assets\layouts\layout\img\icon-img-down.png" />
+    <Content Include="assets\layouts\layout\img\icon-img-up.png" />
+    <Content Include="assets\layouts\layout\img\inbox-nav-arrow-blue.png" />
+    <Content Include="assets\layouts\layout\img\loading-spinner-blue.gif" />
+    <Content Include="assets\layouts\layout\img\loading-spinner-default.gif" />
+    <Content Include="assets\layouts\layout\img\loading-spinner-grey.gif" />
+    <Content Include="assets\layouts\layout\img\loading.gif" />
+    <Content Include="assets\layouts\layout\img\logo-big-white.png" />
+    <Content Include="assets\layouts\layout\img\logo-big.png" />
+    <Content Include="assets\layouts\layout\img\logo-invert.png" />
+    <Content Include="assets\layouts\layout\img\logo.png" />
+    <Content Include="assets\layouts\layout\img\menu-toggler.png" />
+    <Content Include="assets\layouts\layout\img\photo1.jpg" />
+    <Content Include="assets\layouts\layout\img\photo2.jpg" />
+    <Content Include="assets\layouts\layout\img\photo3.jpg" />
+    <Content Include="assets\layouts\layout\img\remove-icon-small.png" />
+    <Content Include="assets\layouts\layout\img\search_icon_light.png" />
+    <Content Include="assets\layouts\layout\img\sidebar-menu-arrow-reverse.png" />
+    <Content Include="assets\layouts\layout\img\sidebar-menu-arrow-right.png" />
+    <Content Include="assets\layouts\layout\img\sidebar-menu-arrow.png" />
+    <Content Include="assets\layouts\layout\img\sidebar_arrow_icon_light.png" />
+    <Content Include="assets\layouts\layout\img\sidebar_arrow_icon_light_rtl.png" />
+    <Content Include="assets\layouts\layout\img\sidebar_inline_toggler_icon_blue.jpg" />
+    <Content Include="assets\layouts\layout\img\sidebar_inline_toggler_icon_darkblue.jpg" />
+    <Content Include="assets\layouts\layout\img\sidebar_inline_toggler_icon_default.jpg" />
+    <Content Include="assets\layouts\layout\img\sidebar_inline_toggler_icon_grey.jpg" />
+    <Content Include="assets\layouts\layout\img\sidebar_inline_toggler_icon_light.jpg" />
+    <Content Include="assets\layouts\layout\img\sidebar_inline_toggler_icon_light2.jpg" />
+    <Content Include="assets\layouts\layout\img\sidebar_toggler_icon_blue.png" />
+    <Content Include="assets\layouts\layout\img\sidebar_toggler_icon_darkblue.png" />
+    <Content Include="assets\layouts\layout\img\sidebar_toggler_icon_default.png" />
+    <Content Include="assets\layouts\layout\img\sidebar_toggler_icon_grey.png" />
+    <Content Include="assets\layouts\layout\img\sidebar_toggler_icon_light.png" />
+    <Content Include="assets\layouts\layout\img\sidebar_toggler_icon_light2.png" />
+    <Content Include="assets\layouts\layout\scripts\demo.js" />
+    <Content Include="assets\layouts\layout\scripts\demo.min.js" />
+    <Content Include="assets\layouts\layout\scripts\layout.js" />
+    <Content Include="assets\layouts\layout\scripts\layout.min.js" />
+    <Content Include="assets\pages\css\login-2.min.css" />
+    <Content Include="assets\pages\img\logo-big-white.png" />
+    <Content Include="assets\pages\media\users\avatar1.jpg" />
+    <Content Include="assets\pages\media\users\avatar10.jpg" />
+    <Content Include="assets\pages\media\users\avatar11.jpg" />
+    <Content Include="assets\pages\media\users\avatar2.jpg" />
+    <Content Include="assets\pages\media\users\avatar3.jpg" />
+    <Content Include="assets\pages\media\users\avatar4.jpg" />
+    <Content Include="assets\pages\media\users\avatar5.jpg" />
+    <Content Include="assets\pages\media\users\avatar6.jpg" />
+    <Content Include="assets\pages\media\users\avatar7.jpg" />
+    <Content Include="assets\pages\media\users\avatar8.jpg" />
+    <Content Include="assets\pages\media\users\avatar80_1.jpg" />
+    <Content Include="assets\pages\media\users\avatar80_2.jpg" />
+    <Content Include="assets\pages\media\users\avatar80_3.jpg" />
+    <Content Include="assets\pages\media\users\avatar80_4.jpg" />
+    <Content Include="assets\pages\media\users\avatar80_5.jpg" />
+    <Content Include="assets\pages\media\users\avatar80_6.jpg" />
+    <Content Include="assets\pages\media\users\avatar80_7.jpg" />
+    <Content Include="assets\pages\media\users\avatar80_8.jpg" />
+    <Content Include="assets\pages\media\users\avatar9.jpg" />
+    <Content Include="assets\pages\media\users\teambg1.jpg" />
+    <Content Include="assets\pages\media\users\teambg2.jpg" />
+    <Content Include="assets\pages\media\users\teambg3.jpg" />
+    <Content Include="assets\pages\media\users\teambg4.jpg" />
+    <Content Include="assets\pages\media\users\teambg5.jpg" />
+    <Content Include="assets\pages\media\users\teambg6.jpg" />
+    <Content Include="assets\pages\media\users\teambg7.jpg" />
+    <Content Include="assets\pages\media\users\teambg8.jpg" />
+    <Content Include="assets\pages\scripts\dashboard.min.js" />
+    <Content Include="assets\pages\scripts\login.js" />
+    <Content Include="assets\pages\scripts\login.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="footer.html" />
+    <Content Include="header.html" />
+    <Content Include="index.html" />
+    <Content Include="js\directives\directives.js" />
+    <Content Include="js\factorys\dataFactory.js" />
+    <Content Include="layout.html" />
+    <Content Include="main.js" />
+    <Content Include="sidebar.html" />
+    <Content Include="views\adsensepack\index.html" />
+    <Content Include="views\adsensepack\index.js" />
+    <Content Include="views\adsensepack\modal.html" />
+    <Content Include="views\adsensepack\modal.js" />
+    <Content Include="views\adsensepack\modify.html" />
+    <Content Include="views\adsensepack\modify.js" />
+    <Content Include="views\adsense\index.html" />
+    <Content Include="views\adsense\index.js" />
+    <Content Include="views\adsense\modal.html" />
+    <Content Include="views\adsense\modal.js" />
+    <Content Include="views\advertisingrecord\index.html" />
+    <Content Include="views\advertisingrecord\index.js" />
+    <Content Include="views\advertising\index.html" />
+    <Content Include="views\advertising\index.js" />
+    <Content Include="views\advertising\modal.html" />
+    <Content Include="views\advertising\modal.js" />
+    <Content Include="views\advertising\putadsense.html" />
+    <Content Include="views\advertising\putadsense.js" />
+    <Content Include="views\cycle\index.html" />
+    <Content Include="views\cycle\index.js" />
+    <Content Include="views\cycle\modal.html" />
+    <Content Include="views\cycle\modal.js" />
+    <Content Include="views\fashionable\index.html" />
+    <Content Include="views\fashionable\index.js" />
+    <Content Include="views\payment\index.html" />
+    <Content Include="views\payment\index.js" />
+    <Content Include="views\payment\modal.html" />
+    <Content Include="views\payment\modal.js" />
+    <Content Include="views\payment\payment.css" />
+    <Content Include="views\scale\index.html" />
+    <Content Include="views\scale\index.js" />
+    <Content Include="views\scale\modal.html" />
+    <Content Include="views\scale\modal.js" />
+    <Content Include="views\transfer\index.html" />
+    <Content Include="views\transfer\index.js" />
+    <Content Include="Web.config" />
+    <Content Include="wechat\wechat.html" />
+    <Content Include="wechat\wechat.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="assets\global\plugins\abp\abp.d.ts" />
+    <TypeScriptCompile Include="assets\global\plugins\abp\libs\abp.jquery.d.ts" />
+    <TypeScriptCompile Include="assets\global\plugins\abp\libs\abp.signalr.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>38759</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:38759/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

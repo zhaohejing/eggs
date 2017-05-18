@@ -1,0 +1,123 @@
+﻿<div ng-controller="views.cycle.index as vm">
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-hand-o-right"></i>
+
+                <a href="#">分账周期管理</a>
+            </li>
+        </ul>
+    </div>
+    <div class="portlet light bordered">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="portlet light">
+                    <div class="portlet-title myPortlet-title">
+                        <span class="myPortlet-title-span">
+                            组织机构
+                        </span>
+                    </div>
+                    <div class="portlet-body scrollList portlet-scroll" ng-scrollbar>
+                        <div id="OrganizationUnitEditTree"></div>
+                        <div ng-if="!vm.organizationTree.unitCount" class="text-muted">
+                            暂无组织机构
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="portlet light">
+                
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class="page-bar">
+                                <div class="col-xs-6">
+                                    <ul ng-if="vm.selectList.length!=0" class="page-breadcrumb">
+                                        <li ng-repeat="row in vm.selectList">
+                                            <a href="#">{{row.name}}</a>
+                                            <i class="fa fa-angle-right"></i>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-xs-6">
+                                    <ul class="page-breadcrumb" style="float:right">
+                                        <li>
+                                            <i class="fa fa-gear"></i>
+                                            <a href="#" ng-click="vm.daily(1)">日结</a>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-gear"></i>
+                                            <a href="#" ng-click="vm.daily(2)">月结</a>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-file-archive-o"></i>
+                                            <a href="#" ng-click="vm.export()">导出excel</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                           
+                            <div class="col-xs-6">
+                                <div class="input-icon right">
+                                    <i ng-click="vm.init()" class="fa fa-search"></i>
+                                    <input type="text" class="form-control input-circle" placeholder="按机构名称搜索" ng-model="vm.filter.orgName">
+                                
+                                </div>
+                            </div>
+                        
+                            <div class="col-xs-6 text-right">
+                                <input type="checkbox" value="1" ng-click="vm.init()" ng-model="vm.filter.check" />已配置 &nbsp;
+                                <input type="checkbox" value="0" ng-click="vm.init()" ng-model="vm.filter.uncheck" />未配置
+                                &nbsp;  {{vm.count.alreadyCount}}/{{vm.count.settingTotal}}
+                            </div>
+
+                        </div>
+                        <!-- 角色列表 -->
+                        <table object-table
+                               data="vm.table.data"
+                               check-model="vm.table.checkModel"
+                               display="vm.table.pageConfig.itemsPerPage"
+                               headers="对象,收款账号(微信),收款账号(支付宝),分帐帐号(微信),分帐帐号(支付宝),分账周期"
+                               fields="orgName,aaa，aaa,aliAccount,periodTime">
+                            <tbody>
+                                <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
+                                    <td>
+                                        <input type="checkbox" ng-model="::item.checked"
+                                               ng-click="$event.stopPropagation(); checkOne(item)" />
+                                    </td>
+                                    <td show-td item="item" name="orgName"></td>
+                                    <td>xxxxxxxxx</td>
+                                    <td>xxxxxxxxx</td>
+                                    <td show-td item="item" name="wxAccount"></td>
+                                    <td show-td item="item" name="aliAccount"></td>
+                                    <!--<td show-td item="item" name="periodTime"></td>-->
+                                    <td >
+                                        <span ng-show="item.periodType==1">T+{{item.periodTime}}</span>
+                                        <span ng-show="item.periodType==2">{{item.periodTime}}</span>
+                                    </td>
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--分页-->
+                        <nav class="paging">
+                            <obj-pagination conf="vm.table.pageConfig"></obj-pagination>
+                        </nav>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

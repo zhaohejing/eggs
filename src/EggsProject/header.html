@@ -1,0 +1,78 @@
+﻿<!-- BEGIN HEADER INNER -->
+<div class="page-header-inner">
+    <!-- BEGIN LOGO -->
+    <div class="page-logo">
+        <a ui-sref="dashboard">
+            <img src="{{settings.layoutPath}}/img/efanlogo.png" style="width:120px;height:35px;" alt="logo" class="logo-default" /> </a>
+        <div class="menu-toggler sidebar-toggler">
+            <span></span>
+            <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+        </div>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN HEADER SEARCH BOX -->
+    <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+    <form class="search-form hide" action="#" method="GET">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search..." name="query">
+            <span class="input-group-btn">
+                <a href="javascript:;" class="btn submit">
+                    <i class="icon-magnifier"></i>
+                </a>
+            </span>
+        </div>
+    </form>
+    <!-- END HEADER SEARCH BOX -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+        <span></span>
+    </a>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <!-- BEGIN TOP NAVIGATION MENU -->
+    <div class="top-menu">
+        <ul class="nav navbar-nav pull-right">
+            <li class="dropdown dropdown-user">
+                <a href="#" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
+                    <img alt="" class="img-circle" src="{{settings.layoutPath}}/img/avatar3_small.jpg" />
+                    <span class="username username-hide-on-mobile"> {{vm.user.username}} </span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-default">
+                    <!--<li>
+                        <a href="#/profile/dashboard">
+                            <i class="icon-user"></i> 我的设置 </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-calendar"></i> 我的任务 </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-envelope-open"></i> 我的计划
+                            <span class="badge badge-danger"> 3 </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/todo">
+                            <i class="icon-rocket"></i> 我的代办
+                            <span class="badge badge-success"> 7 </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="icon-lock"></i> 锁屏 </a>
+                    </li>-->
+                    <li class="divider"> </li>
+
+                    <li>
+                        <a href="#" ng-click="vm.out()">
+                            <i class="icon-key"></i> 退出 </a>
+                    </li>
+                </ul>
+            </li>
+        
+        </ul>
+    </div>
+    <!-- END TOP NAVIGATION MENU -->
+</div>
+<!-- END HEADER INNER -->

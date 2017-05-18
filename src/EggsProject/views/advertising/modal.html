@@ -1,0 +1,84 @@
+﻿<div>
+    <form name="modalform" role="form" novalidate class="form-validation">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                <span >广告发放</span>
+            </h4>
+        </div>
+        <div class="modal-body">
+       
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <p class="input-group">
+                            <input type="text" class="form-control" placeholder="开始时间"
+                                   uib-datepicker-popup readonly
+                                   ng-model="vm.model.startTime"
+                                   is-open="vm.date.leftopen"
+                                   datepicker-options="vm.date.dateOptions"
+                                   ng-required="false"
+                                   current-text="今天"
+                                   clear-text="清除"
+                                    datetimepicker-neutral-timezone
+                                   close-text="关闭" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"
+                                        ng-click="vm.date.openleft()">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-icon right">
+                        <p class="input-group">
+                            <input type="text" class="form-control" placeholder="结束时间"
+                                   uib-datepicker-popup readonly ng-model="vm.model.endTime"
+                                   is-open="vm.date.rightopen"
+                                   datepicker-options="vm.date.dateOptions"
+                                   ng-required="false"
+                                   current-text="今天"
+                                    datetimepicker-neutral-timezone
+                                   clear-text="清除"
+                                   close-text="关闭" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"
+                                        ng-click="vm.date.openright()">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-md-line-input">
+                        <div class="col-md-9">
+                            <div class="md-checkbox-inline">
+                                <div class="md-checkbox">
+                                    <input type="checkbox" name="state" id="check" class="md-check" ng-model="vm.model.atonce">
+                                    <label for="check">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> 立即下发
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="form-control-focus"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button ng-disabled="vm.saving" type="button" class="btn btn-default" ng-click="vm.cancel()">关闭</button>
+            <button type="submit" button-busy="vm.saving" busy-text="保存"
+                    class="btn btn-primary blue" ng-click="vm.save()"
+                    ng-disabled="modalform.$invalid">
+                <span>保存</span>
+            </button>
+        </div>
+    </form>
+</div>
