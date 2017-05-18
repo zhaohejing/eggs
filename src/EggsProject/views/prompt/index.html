@@ -1,11 +1,10 @@
-﻿
-<div ng-controller="views.advertising.index as vm">
+﻿<div ng-controller="views.adsense.index as vm">
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
                 <i class="fa fa-hand-o-right"></i>
 
-                <a href="#">广告发放</a>
+                <a href="#">广告资源管理</a>
             </li>
         </ul>
     </div>
@@ -16,13 +15,13 @@
                     <div class="input-icon right">
                         <p class="input-group">
                             <input type="text" class="form-control" placeholder="开始时间"
-                                   uib-datepicker-popup readonly
+                                   uib-datepicker-popup="yyyy/MM/dd" readonly
                                    ng-model="vm.filter.startTime"
                                    is-open="vm.date.leftopen"
                                    datepicker-options="vm.date.dateOptions"
                                    ng-required="true"
-                                    datetimepicker-neutral-timezone
                                    current-text="今天"
+                                  datetimepicker-neutral-timezone
                                    clear-text="清除"
                                    close-text="关闭" />
                             <span class="input-group-btn">
@@ -38,12 +37,12 @@
                     <div class="input-icon right">
                         <p class="input-group">
                             <input type="text" class="form-control" placeholder="结束时间"
-                                   uib-datepicker-popup readonly ng-model="vm.filter.endTime"
+                                   uib-datepicker-popup="yyyy/MM/dd" readonly ng-model="vm.filter.endTime"
                                    is-open="vm.date.rightopen"
                                    datepicker-options="vm.date.dateOptions"
+                                   datetimepicker-neutral-timezone
                                    ng-required="true"
                                    current-text="今天"
-                                    datetimepicker-neutral-timezone
                                    clear-text="清除"
                                    close-text="关闭" />
                             <span class="input-group-btn">
@@ -58,43 +57,61 @@
                 <div class="col-md-4">
                     <div class="input-icon right">
                         <i ng-click="vm.init()" class="fa fa-search"></i>
-                        <input type="text" class="form-control input-circle" placeholder="按条件搜索" ng-model="vm.table.filter">
+                        <input type="text" class="form-control input-circle" placeholder="按条件搜索" ng-model="vm.filter.name">
                     </div>
                 </div>
             </div>
             <div class="col-xs-4 text-right">
-                <button class="btn btn-primary blue" ng-click="vm.put()"><i class="fa fa-plus"></i> 发放</button>
+                <button class="btn btn-primary blue" ng-click="vm.add()"><i class="fa fa-plus"></i> 添加</button>
+                <button class="btn btn-primary blue" ng-click="vm.edit()"><i class="fa fa-plus"></i> 编辑</button>
+                <button class="btn btn-primary blue" ng-click="vm.public()"><i class="fa fa-laptop"></i> 发布</button>
+                <button class="btn btn-primary blue" ng-click="vm.delete()"><i class="fa fa-times"></i> 删除</button>
             </div>
         </div>
-        <div class="row">
-            <!-- 角色列表 -->
-            <table object-table
-                   data="vm.table.data"
-                   check-model="vm.table.checkModel"
-                   display="vm.table.pageConfig.itemsPerPage"
-                   headers="广告资源包名称,创建时间,描述,状态"
-                   fields="name,createTime,note,state">
-                <tbody>
-                    <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
-                        <td>
-                            <input type="checkbox" ng-model="::item.checked" 
-                                   ng-click="$event.stopPropagation(); checkOne(item)" />
-                        </td>
-                        <td show-td item="item" name="name"></td>
-                        <td show-td item="item" name="createTime" format="yyyy-MM-dd  HH:mm"></td>
-                        <td show-td item="item" name="note"></td>
-                        <td>
-                            <span ng-show="item.state==1">已发布</span>
-                            <span ng-show="item.state==0">未发布</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--分页-->
-            <nav class="paging">
-                <obj-pagination conf="vm.table.pageConfig"></obj-pagination>
-            </nav>
+      <div class="row">
+          <!-- 角色列表 -->
+          <table object-table
+                 data="vm.table.data"
+                 check-model="vm.table.checkModel"
+                 display="vm.table.pageConfig.itemsPerPage"
+                 headers="广告资源名称,广告类型,创建时间,广告概述,广告时长,状态"
+                 fields="name,type,createTime,note,time,state">
+              <tbody>
+                  <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
+                      <td>
+                          <input type="checkbox" ng-model="::item.checked"   ng-show="::item.state!=1"
+                                 ng-click="$event.stopPropagation(); checkOne(item)" />
+                      </td>
+                      <td show-td item="item" name="name"></td>
+                      <td >
+                          <span ng-show="item.type==1">图片</span>
+                          <span ng-show="item.type==2">视频</span>
+                      </td>
+                      <td show-td item="item" name="createTime" format="yyyy-MM-dd HH:mm"></td>
+                      <td show-td item="item" name="note"></td>
+                      <td show-td item="item" name="time"></td>
+                      <td >
+                          <span ng-show="item.state==1">已发布</span>
+                          <span ng-show="item.state==0">未发布</span>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+          <!--分页-->
+          <nav class="paging">
+              <obj-pagination conf="vm.table.pageConfig"></obj-pagination>
+          </nav>
 
-        </div>
+      </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+

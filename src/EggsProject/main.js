@@ -92,20 +92,9 @@ MetronicApp.controller('SidebarController', ['$state', '$scope', function ($stat
         Layout.initSidebar($state); // init sidebar
     });
     vm.list = [
-     // 广告资源管理
-      { url: "adsense", title: "广告资源管理", icon: "fa fa-clipboard" },
-      { url: "adsensepack", title: "广告资源包", icon: "fa fa-suitcase" },
-      { url: "advertising", title: "广告投放", icon: "fa fa-cogs" },
-      { url: "advertisingrecord", title: "广告发放记录", icon: "fa fa-bar-chart" },
-      {
-          url: "", title: "分帐系统", icon: "fa fa-chain-broken", child: [
-              { url: "fashionable", title: "分账管理", icon: "fa fa-industry" },
-              { url: "transfer", title: "转账管理", icon: "fa fa-industry" },
-              { url: "payment", title: "收款账户管理", icon: "fa fa-jpy" },
-              { url: "cycle", title: "分账周期管理", icon: "fa fa-cc-visa" },
-              { url: "scale", title: "分账比例管理", icon: "fa fa-gg-circle" },
-          ]
-      },
+      { url: "coupon", title: "卡券管理", icon: "fa fa-clipboard" },
+      { url: "plan", title: "方案管理", icon: "fa fa-suitcase" },
+      { url: "prompt", title: "未中奖提示", icon: "fa fa-cogs" },
     ];
 
 }]);
@@ -119,15 +108,14 @@ MetronicApp.controller('FooterController', ['$scope', function ($scope) {
 //路由设置
 MetronicApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     // Redirect any unmatched url
-    $urlRouterProvider.otherwise("/fashionable.html");
+    $urlRouterProvider.otherwise("/coupon.html");
     var abp = abp;
     $stateProvider
-        //广告资源管理
-        .state("adsense", {
-            url: "/adsense.html",
-            templateUrl: "views/adsense/index.html",
-            data: { pageTitle: '广告资源管理' },
-        //    controller: "views.adsense.index",
+        //卡券管理
+        .state("coupon", {
+            url: "/coupon.html",
+            templateUrl: "views/coupon/index.html",
+            data: { pageTitle: '卡券管理' },
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load(
@@ -142,14 +130,14 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProv
                             name: 'Modal',
                             insertBefore: '#ng_load_plugins_before',
                             files: [
-                                'views/adsense/modal.js'
+                                'views/coupon/modal.js'
                             ]
                         },
                         {
                             name: 'MetronicApp',
                             insertBefore: '#ng_load_plugins_before',
                             files: [
-                                'views/adsense/index.js'
+                                'views/coupon/index.js'
                             ]
                         }]
 
@@ -157,212 +145,42 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProv
                 }]
             }
         })
-         //广告资源包管理
-        .state("adsensepack", {
-            url: "/adsensepack.html",
-            templateUrl: "views/adsensepack/index.html",
-            data: { pageTitle: '广告资源包管理' },
-        //    controller: "views.adsensepack.index",
+         //方案管理
+        .state("plan", {
+            url: "/plan.html",
+            templateUrl: "views/plan/index.html",
+            data: { pageTitle: '方案管理' },
             resolve: {
                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                     return $ocLazyLoad.load({
                         name: 'MetronicApp',
                         insertBefore: '#ng_load_plugins_before',
                         files: [
-                            'views/adsensepack/index.js'
+                            'views/plan/index.js'
                         ]
                     });
                 }]
             }
         })
-         .state("adsensepackmodify", {
-             url: "/modify.html",
+         .state("prompt", {
+             url: "/prompt.html",
              params: { "id": null },
-             templateUrl: "views/adsensepack/modify.html",
-             data: { pageTitle: '广告资源包操作' },
-        //     controller: "views.adsensepack.modify",
+             templateUrl: "views/prompt/index.html",
+             data: { pageTitle: '未中奖提示' },
              resolve: {
                  deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                      return $ocLazyLoad.load({
                          name: 'MetronicApp',
                          insertBefore: '#ng_load_plugins_before',
                          files: [
-                             'views/adsensepack/modify.js',
-                             'views/adsensepack/modal.js'
+                             'views/prompt/index.js',
+                             'views/prompt/modal.js'
                          ]
                      });
                  }]
              }
          })
-           //广告投放管理
-        .state("advertising", {
-            url: "/advertising.html",
-            templateUrl: "views/advertising/index.html",
-            data: { pageTitle: '广告投放管理' },
-       //     controller: "views.advertising.index",
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'MetronicApp',
-                        insertBefore: '#ng_load_plugins_before',
-                        files: [
-                            'views/advertising/index.js'
-                        ]
-                    });
-                }]
-            }
-        })
-         .state("putadsense", {
-             url: "/putadsense.html",
-             params:{"resourse":null },
-             templateUrl: "views/advertising/putadsense.html",
-             data: { pageTitle: '广告投放' },
-         //    controller: "views.advertising.putadsense",
-             resolve: {
-                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                     return $ocLazyLoad.load([{
-                         name: 'MetronicApp',
-                         insertBefore: '#ng_load_plugins_before',
-                         files: [
-
-                             'views/advertising/putadsense.js',
-                             'views/advertising/modal.js'
-                         ]
-                     }, {
-                         name: 'jstreeneed',
-                         insertBefore: '#ng_load_plugins_before',
-                         files: [
-                             'assets/global/plugins/jstree/dist/jstree.min.js',
-                             'assets/global/plugins/jstree/dist/themes/default/style.min.css',
-                         ]
-                     }]);
-                 }]
-             }
-         })
-             //广告投放记录管理
-        .state("advertisingrecord", {
-            url: "/advertisingrecord.html",
-            templateUrl: "views/advertisingrecord/index.html",
-            data: { pageTitle: '广告投放记录管理' },
-       //     controller: "views.advertisingrecord.index",
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'MetronicApp',
-                        insertBefore: '#ng_load_plugins_before', 
-                        files: [
-                            'views/advertisingrecord/index.js'
-                        ]
-                    });
-                }]
-            }
-        })
-
-    $stateProvider
-         .state("fashionable", {
-             url: "/fashionable.html",
-             templateUrl: "views/fashionable/index.html",
-             data: { pageTitle: '收款账户管理' },
-         //    controller: "views.fashionable.index",
-             resolve: {
-                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                     return $ocLazyLoad.load(
-                         [{
-                             name: 'MetronicApp',
-                             insertBefore: '#ng_load_plugins_before',
-                             files: [
-                                 'views/fashionable/index.js',
-                             ]
-                         }]
-
-                         );
-                 }]
-             }
-         })
-      .state("transfer", {
-          url: "/transfer.html",
-          templateUrl: "views/transfer/index.html",
-          data: { pageTitle: '转账管理' },
-          //    controller: "views.payment.index",
-          resolve: {
-              deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                  return $ocLazyLoad.load(
-                      [{
-                          name: 'MetronicApp',
-                          insertBefore: '#ng_load_plugins_before',
-                          files: [
-                              'views/transfer/index.js',
-                          ]
-                      }]
-
-                      );
-              }]
-          }
-      })
     
-        .state("payment", {
-            url: "/payment.html",
-            templateUrl: "views/payment/index.html",
-            data: { pageTitle: '收款账户管理' },
-        //    controller: "views.payment.index",
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load(
-                        [{
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before',
-                            files: [
-                                'views/payment/index.js',
-                                'views/payment/payment.css',
-                                'views/payment/modal.js'
-                            ]
-                        }]
-
-                        );
-                }]
-            }
-        })
-        .state("scale", {
-            url: "/scale.html",
-            templateUrl: "views/scale/index.html",
-            data: { pageTitle: '收款比例管理' },
-        //    controller: "views.scale.index",
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load(
-                        [{
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before',
-                            files: [
-                                'views/scale/index.js',
-                                'views/scale/modal.js'
-                            ]
-                        }]
-                        );
-                }]
-            }
-        })
-        .state("cycle", {
-            url: "/cycle.html",
-            templateUrl: "views/cycle/index.html",
-            data: { pageTitle: '收款周期管理' },
-        //    controller: "views.cycle.index",
-            resolve: {
-                deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                    return $ocLazyLoad.load(
-                        [{
-                            name: 'MetronicApp',
-                            insertBefore: '#ng_load_plugins_before',
-                            files: [
-                                'views/cycle/index.js',
-                                'views/cycle/modal.js'
-                            ]
-                        }]
-
-                        );
-                }]
-            }
-        })
 }]);
 
 //启动
