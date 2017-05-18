@@ -496,14 +496,14 @@
     <Content Include="assets\pages\scripts\login.js" />
     <Content Include="assets\pages\scripts\login.min.js" />
     <Content Include="favicon.ico" />
-    <Content Include="footer.html" />
-    <Content Include="header.html" />
+    <Content Include="layouts\footer.html" />
+    <Content Include="layouts\header.html" />
     <Content Include="index.html" />
     <Content Include="js\directives\directives.js" />
     <Content Include="js\factorys\dataFactory.js" />
     <Content Include="layout.html" />
     <Content Include="main.js" />
-    <Content Include="sidebar.html" />
+    <Content Include="layouts\sidebar.html" />
     <Content Include="views\coupon\index.html" />
     <Content Include="views\coupon\index.js" />
     <Content Include="views\coupon\modal.html" />

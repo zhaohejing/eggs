@@ -60,13 +60,13 @@
     </div>
     <!-- END PAGE SPINNER -->
     <!-- BEGIN HEADER -->
-    <div data-ng-include="'header.html'" data-ng-controller="HeaderController as vm" class="page-header navbar navbar-fixed-top"> </div>
+    <div data-ng-include="'layouts/header.html'" data-ng-controller="HeaderController as vm" class="page-header navbar navbar-fixed-top"> </div>
     <!-- END HEADER -->
     <div class="clearfix"> </div>
     <!-- BEGIN CONTAINER -->
     <div class="page-container">
         <!-- BEGIN SIDEBAR -->
-        <div data-ng-include="'sidebar.html'" data-ng-controller="SidebarController as vm" class="page-sidebar-wrapper"> </div>
+        <div data-ng-include="'layouts/sidebar.html'" data-ng-controller="SidebarController as vm" class="page-sidebar-wrapper"> </div>
         <!-- END SIDEBAR -->
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
@@ -91,7 +91,7 @@
     </div>
     <!-- END CONTAINER -->
     <!-- BEGIN FOOTER -->
-    <div data-ng-include="'footer.html'" data-ng-controller="FooterController" class="page-footer"> </div>
+    <div data-ng-include="'layouts/footer.html'" data-ng-controller="FooterController" class="page-footer"> </div>
     <!-- END FOOTER -->
     <!-- BEGIN QUICK NAV -->
 
