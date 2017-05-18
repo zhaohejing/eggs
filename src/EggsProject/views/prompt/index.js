@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module('MetronicApp').controller('views.adsense.index', ['$scope', 'settings', '$uibModal', "dataFactory",
+    angular.module('MetronicApp').controller('views.prompt.index', ['$scope', 'settings', '$uibModal', "dataFactory",
         function ($scope, settings, $uibModal, dataFactory) {
             // ajax初始化
             $scope.$on('$viewContentLoaded', function () {
@@ -7,28 +7,7 @@
             });
             var vm = this;
             vm.filter = {};
-            vm.date = {
-                leftopen: false,
-                rightopen: false,
-                inlineOptions: {
-                    showWeeks: false
-                },
-                dateOptions: {
-                    //dateDisabled: disabled,
-                    formatYear: 'yyyy',
-                    formatMonth: 'MM',
-                    formatDay: 'dd',
-                    maxDate: new Date(5000, 1, 1),
-                    minDate: new Date(1900, 1, 1),
-                    startingDay: 1
-                },
-                openleft: function () {
-                    vm.date.leftopen = !vm.date.leftopen;
-                },
-                openright: function () {
-                    vm.date.rightopen = !vm.date.rightopen;
-                }
-            }
+      
             //页面属性
             vm.table = {
                 data: [],               //数据集
@@ -59,8 +38,8 @@
             vm.init();
             vm.add = function () {
                 var modal = $uibModal.open({
-                    templateUrl: 'views/adsense/modal.html',
-                    controller: 'views.adsense.modal as vm',
+                    templateUrl: 'views/prompt/modal.html',
+                    controller: 'views.prompt.modal as vm',
                     backdrop: 'static',
                     size: 'lg',//模态框的大小尺寸
                     resolve: {

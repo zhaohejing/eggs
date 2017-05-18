@@ -1,18 +1,19 @@
-﻿angular.module('MetronicApp').controller('views.payment.modal',
-    ['$scope', 'settings', '$uibModalInstance', 'model', 'dataFactory',
+﻿angular.module('MetronicApp').controller('views.plan.modal',
+    ['$scope', 'settings', '$uibModalInstance', 'model',  'dataFactory',
         function ($scope, settings, $uibModalInstance, model, dataFactory) {
             $scope.$on('$viewContentLoaded', function () {
                 App.initAjax();
 
             });
             var vm = this;
-            vm.model = model;
+           
             vm.save = function () {
-                if (!vm.model.list && (!vm.model.wxAccount || !vm.model.aliAccount)) {
-                    abp.notify.warn("请输入要绑定的账号");
+                if (!vm.model.id && (!vm.model.address || vm.model.address == undefined || vm.model.address == null)) {
+                    abp.notify.warn("请先上传资源");
                     return;
                 }
-                dataFactory.action('api/orgsetting/bindOrgAccount', "", null, vm.model).then(function (res) {
+                vm.model.state = vm.model.state ? 1 : 0;
+                dataFactory.action(vm.url, "", null, vm.model).then(function (res) {
                     if (res.result == "1") {
                         $uibModalInstance.close();
                     } else {
@@ -23,5 +24,5 @@
             vm.cancel = function () {
                 $uibModalInstance.dismiss();
             };
-
+          
         }]);
