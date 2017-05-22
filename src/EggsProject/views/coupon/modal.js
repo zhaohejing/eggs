@@ -66,8 +66,8 @@
                 if (vm.model.date_info_type==1) {
                     vm.model.fixed_begin_term = null;
                     vm.model.fixed_term = null;
-                    vm.model.begin_timestamp = vm.model.begin_timestamp.valueOf();
-                    vm.model.end_timestamp = vm.model.end_timestamp.valueOf();
+                    vm.model.begin_timestamp = Math.round(vm.model.begin_timestamp.valueOf() / 1000);
+                    vm.model.end_timestamp = Math.round(vm.model.end_timestamp.valueOf() / 1000);
                 } else if (vm.model.date_info_type == 2) {
                     vm.model.begin_timestamp = null;
                     vm.model.end_timestamp = null;
