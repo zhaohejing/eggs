@@ -3,7 +3,7 @@
         <div class="modal-header">
             <h4 class="modal-title">
                 <span ng-if="!vm.model.id">添加卡券</span>
-                <span ng-if="vm.model.id">编辑卡券: {{vm.model.name}} </span>
+                <span ng-if="vm.model.id">编辑卡券: {{vm.model.title}} </span>
             </h4>
         </div>
         <div class="modal-body">
@@ -12,8 +12,8 @@
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label">商户名称</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="商户名称"
-                                   ng-class="{'edited':vm.model.brand_name}" required ng-model="vm.model.brand_name">
+                            <input type="text" class="form-control" placeholder="商户名称" ng-readonly="vm.model.id>0"
+                                   ng-class="{'edited':vm.model.id>0}" required ng-model="vm.model.brand_name">
                             <div class="form-control-focus"> </div>
                         </div>
                     </div>
@@ -22,7 +22,8 @@
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label" for="cate">卡券类型</label>
                         <div class="col-md-9">
-                            <select class="form-control edited" ui-validate="'$value>0'" ng-class="{'edited':vm.model.card_type>0}" required
+                            <select class="form-control edited" ui-validate="'$value>0'"
+                                     ng-class="{'edited':vm.model.card_type>0}" required   ng-readonly="vm.model.id>0"
                                     ng-model="vm.model.card_type" ng-options="m.id as m.name for m in vm.type"></select>
                             <div class="form-control-focus"> </div>
                         </div>
@@ -34,7 +35,7 @@
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label">启用金额</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" placeholder="启用金额"   ui-validate="'$value>0'"
+                            <input type="number" class="form-control" placeholder="启用金额"  ng-readonly="vm.model.id>0"  ui-validate="'$value>0'"
                                    ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
                             <div class="form-control-focus"> </div>
                         </div>
@@ -44,7 +45,7 @@
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label">减免金额</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" placeholder="减免金额"  ui-validate="'$value>0'"
+                            <input type="number" class="form-control" placeholder="减免金额"   ng-readonly="vm.model.id>0" ui-validate="'$value>0'"
                                    ng-class="{'edited':vm.model.reduce_cost}" required ng-model="vm.model.reduce_cost">
                             <div class="form-control-focus"> </div>
                         </div>
@@ -56,7 +57,7 @@
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label">打折额度</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" placeholder="打折额度"
+                            <input type="number" class="form-control" placeholder="打折额度"  ng-readonly="vm.model.id>0"
                                    ng-class="{'edited':vm.model.discount}" required ng-model="vm.model.discount">
                             <div class="form-control-focus"> </div>
                         </div>
@@ -69,7 +70,7 @@
 
                         <label class="col-md-3 control-label">商品</label>
                         <div class="col-md-9">
-                            <select class="form-control edited" ui-validate="'$value>0'" ng-class="{'edited':vm.gift}" required
+                            <select class="form-control edited" ui-validate="'$value>0'"  ng-readonly="vm.model.id>0" ng-class="{'edited':vm.gift}" required
                                     ng-model="vm.gift" ng-options="m.gift_name for m in vm.gifts"></select>
                             <div class="form-control-focus"> </div>
                         </div>
@@ -83,7 +84,7 @@
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label">卡券名</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="卡券名"
+                            <input type="text" class="form-control" placeholder="卡券名"  ng-readonly="vm.model.id>0"
                                    ng-class="{'edited':vm.model.title}" required ng-model="vm.model.title">
                             <div class="form-control-focus"> </div>
                         </div>
@@ -93,7 +94,7 @@
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label">券名</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="券名"
+                            <input type="text" class="form-control" placeholder="券名" ng-disabled="vm.model.id>0"  ng-readonly="vm.model.id>0"
                                    ng-class="{'edited':vm.model.title}" required ng-model="vm.model.title">
                             <div class="form-control-focus"> </div>
                         </div>

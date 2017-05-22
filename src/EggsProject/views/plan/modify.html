@@ -10,52 +10,64 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label">资源包名称</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control"  ng-class="{'edited':vm.plan.name}" placeholder="请输入名称" required ng-model="vm.plan.name">
-                                <div class="form-control-focus"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label">是否发布</label>
-                            <div class="col-md-9">
-                                <div class="md-checkbox-inline">
-                                    <div class="md-checkbox">
-                                        <input type="checkbox" id="check" class="md-check" ng-model="vm.plan.state">
-                                        <label for="check">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> 发布
-                                        </label>
-                                    </div>
-
-                                </div>
-                                <div class="form-control-focus"> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group form-md-line-input">
-                            <label class="col-md-2 control-label">广告备注</label>
-                            <div class="col-md-10">
-                                <textarea ng-model="vm.plan.note" ng-class="{'edited':vm.plan.note}" class="form-control" rows="2" placeholder="请输入简介"></textarea>
+                            <div class="form-group form-md-line-input">
+                                <label class="col-md-3 control-label" for="cate">场景名称</label>
+                                <div class="col-md-9">
+                                    <select class="form-control edited" ui-validate="'$value>0'" ng-class="{'edited':vm.sence}" required
+                                            ng-model="vm.sence" ng-options="m.scene_name for m  in vm.scenes"></select>
+                                    <div class="form-control-focus"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="vm.sence.scene_type==1" class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">次数限制</label>
+                            <label class="col-md-3 control-label">每次购买后</label>
+                            <div class="col-md-3">
+                                <input type="number" class="form-control"  ui-validate="'$value>0'"
+                                       ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
                                 <div class="form-control-focus"> </div>
                             </div>
+                            <label class="col-md-3 control-label">次</label>
                         </div>
                     </div>
 
                 </div>
+                <div ng-if="vm.sence.scene_type==2" class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">单次价格</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" placeholder="单次价格" ui-validate="'$value>0'"
+                                       ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
+                                <div class="form-control-focus"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label" for="cate">选择游戏</label>
+                            <div class="col-md-9">
+                                <select class="form-control edited" ui-validate="'$value>0'" ng-class="{'edited':vm.model.card_type>0}" required
+                                        ng-model="vm.model.game_id" ng-options="m.id as m.name for m in vm.games"></select>
+                                <div class="form-control-focus"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             
             </div>
             <hr />
             <div class="row">
                 <div class="col-xs-8 text-left">
-                    <span>广告资源列表</span>
+                    <span>奖品设置</span>
                 </div>
                 <div class="col-xs-4 text-right">
                     <button class="btn btn-primary blue" ng-click="vm.addadsense()"><i class="fa fa-plus"></i> 添加广告</button>
@@ -65,11 +77,10 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>广告名称</th>
-                            <th>广告类型</th>
-                            <th>广告概述</th>
-                            <th>广告时长</th>
-                            <th>广告排序</th>
+                            <th>卡券类型</th>
+                            <th>卡券名称</th>
+                            <th>库存</th>
+                            <th>中奖概率</th>
                             <th>删除</th>
                         </tr>
                     </thead>
@@ -85,6 +96,24 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-8 text-left">
+                    <span>适用设备</span>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <button class="btn btn-primary blue" ng-click="vm.addadsense()"><i class="fa fa-plus"></i> 添加广告</button>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-8 text-left">
+                    <span>未中奖提示</span>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <button class="btn btn-primary blue" ng-click="vm.addadsense()"><i class="fa fa-plus"></i> 添加广告</button>
+                </div>
             </div>
             <div class="modal-footer">
                 <button ng-disabled="vm.saving" type="button" class="btn btn-default" ng-click="vm.cancel()">返回</button>

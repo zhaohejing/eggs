@@ -151,6 +151,7 @@
     <Content Include="assets\global\plugins\toastr\toastr.js.map" />
     <Content Include="assets\global\plugins\toastr\toastr.less" />
     <Content Include="assets\global\plugins\toastr\toastr.scss" />
+    <None Include="Properties\PublishProfiles\ccc.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -39,29 +39,7 @@
 
             vm.gifts = [];
             vm.type = [{ id: 1, name: "代金券" }, { id: 2, name: "折扣券" }, { id: 3, name: "礼品券" }];
-            vm.initgift = function () {
-                dataFactory.action("api/card/getGiftList", "", null, {}).then(function (res) {
-                    if (res.result == "1") {
-                        vm.gifts = res.data;
-                    } else {
-                        abp.notify.error("保存失败,请重试");
-                    }
-                });
-                
-            }
-            vm.init = function () {
-                if (model.id) {
-                    dataFactory.action("api/card/getCard?id="+model.id, "GET", null, {}).then(function (res) {
-                        if (res.result == "1") {
-                            vm.model = res.data;
-                        } else {
-                            abp.notify.error("获取失败,请重试");
-                        }
-                    });
-                } 
-               
-
-            }
+           
             vm.save = function () {
                 if (vm.model.date_info_type==1) {
                     vm.model.fixed_begin_term = null;
@@ -92,6 +70,31 @@
             vm.cancel = function () {
                 $uibModalInstance.dismiss();
             };
+
+
+            vm.initgift = function () {
+                dataFactory.action("api/card/getGiftList", "", null, {}).then(function (res) {
+                    if (res.result == "1") {
+                        vm.gifts = res.data;
+                    } else {
+                        abp.notify.error("保存失败,请重试");
+                    }
+                });
+
+            }
             vm.initgift();
+
+
+            vm.init = function () {
+                if (model.id) {
+                    dataFactory.action("api/card/getCard?id=" + model.id, "GET", null, {}).then(function (res) {
+                        if (res.result == "1") {
+                            vm.model = res.data;
+                        } else {
+                            abp.notify.error("获取失败,请重试");
+                        }
+                    });
+                }
+            }
             vm.init();
         }]);

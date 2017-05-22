@@ -8,10 +8,10 @@
         });
         var vm = this;
         vm.planId = $stateParams.id;
-
-        vm.filter = {};
+        vm.scenes = [{ scene_type: 1, scene_name: "购买之后" }, { scene_type: 2, scene_name: "每日游戏" }];
+        vm.games = [{ id: 1, name: "砸蛋" }, { id: 2, name: "飞镖" }];
         vm.plan = {};
-        vm.checktable = [];
+        vm.sence = { scene_type:1 };
         if (vm.planId) {
             dataFactory.action("api/package/detail", "", null, { id: vm.planId })
               .then(function (res) {
@@ -48,60 +48,8 @@
                 }
             })
         }
-            //添加广告
-        vm.addadsense = function () {
-            var ids = [];
-            if (vm.checktable.length>0) {
-                for (var i = 0; i < vm.checktable.length; i++) {
-                    ids.push(vm.checktable[i].id);
-                }
-            }
-            var modal = $uibModal.open({
-                templateUrl: 'views/adsensepack/modal.html',
-                controller: 'views.adsensepack.modal as vm',
-                backdrop: 'static',
-                size: 'lg',//模态框的大小尺寸
-                resolve: {
-                    model: function () { return ids },
-                }
-            });
-            modal.result.then(function (response) {
-                if (response) {
-                    var y = 0;
-                    var arr = [];
-                    for (var i in response) {
-                        response[i].order = y++;
-                        vm.checktable.push(response[i]);
-                    }
-                  //  vm.checktable = arr;
-                }
-            })
-        }
-        vm.sort = function (row, num) {
-            var p = row.order - 1;
-            var n = row.order + 1;
-            var prev = vm.checktable[p];
-            var next = vm.checktable[n];
-            var temp ;
-            if (num==1) {//向上
-                if (prev==undefined) {
-                    return;
-                }
-                temp = prev.order;
-                prev.order = row.order;
-                row.order = temp;
-            } else {
-                if (next==undefined) {
-                    return;
-                }
-                temp = next.order;
-                next.order = row.order;
-                row.order = temp;
-            }
-            vm.checktable.sort(function (x, y) {
-                return x.order - y.order
-            });
-        }
+   
+      
         vm.remove = function (row) {
             vm.checktable.splice($.inArray(row, vm.checktable), 1);
         }
