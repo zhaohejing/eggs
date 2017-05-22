@@ -519,6 +519,8 @@
     <Content Include="views\prompt\index.js" />
     <Content Include="views\prompt\modal.html" />
     <Content Include="views\prompt\modal.js" />
+    <Content Include="views\record\index.html" />
+    <Content Include="views\record\index.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

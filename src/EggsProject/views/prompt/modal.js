@@ -6,14 +6,16 @@
 
             });
             var vm = this;
-           
+            vm.tips = {};
+            vm.gift;
+            if (model.id) {
+                vm.url = "api/tips/update";
+            } else {
+                vm.url = "api/tips/add";
+            }
+
             vm.save = function () {
-                if (!vm.model.id && (!vm.model.address || vm.model.address == undefined || vm.model.address == null)) {
-                    abp.notify.warn("请先上传资源");
-                    return;
-                }
-                vm.model.state = vm.model.state ? 1 : 0;
-                dataFactory.action(vm.url, "", null, vm.model).then(function (res) {
+                dataFactory.action(vm.url, "", null, vm.tips).then(function (res) {
                     if (res.result == "1") {
                         $uibModalInstance.close();
                     } else {
@@ -25,4 +27,18 @@
                 $uibModalInstance.dismiss();
             };
           
+
+            vm.init = function () {
+                if (model.id) {
+                    dataFactory.action("api/tips/getTips?id=" + model.id, "GET", null, {}).then(function (res) {
+                        if (res.result == "1") {
+                            vm.tips = res.data;
+                        } else {
+                            abp.notify.error("获取失败,请重试");
+                        }
+                    });
+                }
+            }
+            vm.init();
+
         }]);

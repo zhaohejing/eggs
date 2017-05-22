@@ -92,7 +92,12 @@ MetronicApp.controller('SidebarController', ['$state', '$scope', function ($stat
     });
     vm.list = [
       { url: "coupon", title: "卡券管理", icon: "fa fa-clipboard" },
-      { url: "plan", title: "方案管理", icon: "fa fa-suitcase" },
+      {
+          url: "", title: "方案管理", icon: "fa fa-suitcase", child: [
+               { url: "plan", title: "方案列表", icon: "fa fa-sticky-note" },
+               { url: "record", title: "领取记录", icon: "fa fa-bars" },
+          ]
+      },
       { url: "prompt", title: "未中奖提示", icon: "fa fa-cogs" },
     ];
 
@@ -194,6 +199,23 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProv
                          files: [
                              'views/prompt/index.js',
                              'views/prompt/modal.js'
+                         ]
+                     });
+                 }]
+             }
+         })
+      //领取记录
+         .state("record", {
+             url: "/record.html",
+             templateUrl: "views/record/index.html",
+             data: { pageTitle: '领取记录' },
+             resolve: {
+                 deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                     return $ocLazyLoad.load({
+                         name: 'MetronicApp',
+                         insertBefore: '#ng_load_plugins_before',
+                         files: [
+                             'views/record/index.js',
                          ]
                      });
                  }]

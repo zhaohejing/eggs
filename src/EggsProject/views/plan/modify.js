@@ -26,7 +26,7 @@
         }
       
         vm.cancel = function () {
-            $state.go("adsensepack");
+            $state.go("plan");
         }
             //保存
         vm.save = function () {

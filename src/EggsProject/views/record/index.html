@@ -1,9 +1,9 @@
-﻿<div ng-controller="views.prompt.index as vm">
+﻿<div ng-controller="views.record.index as vm">
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
                 <i class="fa fa-hand-o-right"></i>
-                <a href="#">未中奖提示</a>
+                <a href="#">领取记录</a>
             </li>
         </ul>
     </div>
@@ -17,28 +17,26 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-4 text-right">
-                <button class="btn btn-primary blue" ng-click="vm.add()"><i class="fa fa-plus"></i> 添加</button>
-                <button class="btn btn-primary blue" ng-click="vm.edit()"><i class="fa fa-plus"></i> 编辑</button>
-                <button class="btn btn-primary blue" ng-click="vm.delete()"><i class="fa fa-times"></i> 删除</button>
-            </div>
+         
         </div>
       <div class="row">
           <table object-table
                  data="vm.table.data"
                  check-model="vm.table.checkModel"
                  display="vm.table.pageConfig.itemsPerPage"
-                 headers="编号,提示文案"
-                 fields="id,tips">
+                 headers="卡券名,领取人,领取时间,使用时间"
+                 fields="card_name,aaaa,bbb,cccc">
               <tbody>
                   <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
                       <td>
                           <input type="checkbox" ng-model="::item.checked"  
                                  ng-click="$event.stopPropagation(); checkOne(item)" />
                       </td>
-                      <td show-td item="item" name="id"></td>
-                     
-                      <td show-td item="item" name="tips"></td>
+                      <td show-td item="item" name="card_name"></td>
+                      <td show-td item="item" name="aaaa"></td>
+                      <td show-td item="item" name="bbb"></td>
+                      <td show-td item="item" name="cccc"></td>
+                    
                   </tr>
               </tbody>
           </table>

@@ -24,10 +24,11 @@
                 vm.filter.pageNum = vm.table.pageConfig.currentPage;
                 vm.filter.pageSize = vm.table.pageConfig.itemsPerPage;
 
-                dataFactory.action("api/resource/selectAll", "", null, vm.filter)
+                dataFactory.action("api/tips/getTipsList", "", null, vm.filter)
                     .then(function (res) {
                         if (res.result == "1") {
                             vm.table.pageConfig.totalItems = res.total;
+                            vm.table.checkModel = {};
                             vm.table.data = res.list;
                             vm.table.pageConfig.onChange = function () {
                                 vm.init();
@@ -41,7 +42,7 @@
                     templateUrl: 'views/prompt/modal.html',
                     controller: 'views.prompt.modal as vm',
                     backdrop: 'static',
-                    size: 'lg',//模态框的大小尺寸
+                   // size: 'sm',//模态框的大小尺寸
                     resolve: {
                         model: function () { return {} },
                     }
@@ -56,17 +57,12 @@
                     abp.notify.warn("请选择一个操作对象");
                     return;
                 }
-                for (var i in vm.table.checkModel) {
-                    if (vm.table.checkModel[i].state == 1) {
-                        abp.notify.warn("已发布对象不允许操作");
-                        return;
-                    }
-                }
+              
                 var modal = $uibModal.open({
-                    templateUrl: 'views/adsense/modal.html',
-                    controller: 'views.adsense.modal as vm',
+                    templateUrl: 'views/prompt/modal.html',
+                    controller: 'views.prompt.modal as vm',
                     backdrop: 'static',
-                    size: 'lg',//模态框的大小尺寸
+                  //  size: 'sm',//模态框的大小尺寸
                     resolve: {
                         model: function () { return { id: id[0] } },
                     }
@@ -76,20 +72,11 @@
                 })
             }
             vm.delete = function () {
-                //dataFactory.confirm("确定删除?", "要删除这个么").then(function () {
-
-                //});
                 var ids = Object.getOwnPropertyNames(vm.table.checkModel);
                 if (ids.length <= 0) {
                     abp.notify.warn("请选择要删除的对象");
                     return;
                 }
-                for (var i in vm.table.checkModel) {
-                    if (vm.table.checkModel[i].state == 1) {
-                        abp.notify.warn("已发布对象不允许操作");
-                        return;
-                    }
-                };
                 abp.message.confirm(
                '删除将导致数据无法显示', //确认提示
                '确定要删除么?',//确认提示（可选参数）
@@ -105,23 +92,7 @@
                    });
 
             }
-            vm.public = function () {
-                var ids = Object.getOwnPropertyNames(vm.table.checkModel);
-                if (ids.length <= 0) {
-                    abp.notify.warn("请选择单个操作对象");
-                    return;
-                }
-                for (var i in vm.table.checkModel) {
-                    if (vm.table.checkModel[i].state == 1) {
-                        abp.notify.warn("已发布对象不允许操作");
-                        return;
-                    }
-                }
-                dataFactory.action("api/resource/updateState", "", null, { list: ids, state: 1 }).then(function (res) {
-                    abp.notify.success("更新成功");
-                    vm.init();
-                });
-            }
+          
         }])
 })();
 
