@@ -23,8 +23,7 @@
             vm.init = function () {
                 vm.filter.pageNum = vm.table.pageConfig.currentPage;
                 vm.filter.pageSize = vm.table.pageConfig.itemsPerPage;
-
-                dataFactory.action("api/resource/selectAll", "", null, vm.filter)
+                dataFactory.action("api/card/getCardList", "", null, vm.filter)
                     .then(function (res) {
                         if (res.result == "1") {
                             vm.table.pageConfig.totalItems = res.total;
@@ -56,15 +55,10 @@
                     abp.notify.warn("请选择一个操作对象");
                     return;
                 }
-                for (var i in vm.table.checkModel) {
-                    if (vm.table.checkModel[i].state == 1) {
-                        abp.notify.warn("已发布对象不允许操作");
-                        return;
-                    }
-                }
+             
                 var modal = $uibModal.open({
-                    templateUrl: 'views/adsense/modal.html',
-                    controller: 'views.adsense.modal as vm',
+                    templateUrl: 'views/coupon/modal.html',
+                    controller: 'views.coupon.modal as vm',
                     backdrop: 'static',
                     size: 'lg',//模态框的大小尺寸
                     resolve: {
@@ -76,28 +70,20 @@
                 })
             }
             vm.delete = function () {
-                //dataFactory.confirm("确定删除?", "要删除这个么").then(function () {
-
-                //});
+               
                 var ids = Object.getOwnPropertyNames(vm.table.checkModel);
-                if (ids.length <= 0) {
-                    abp.notify.warn("请选择要删除的对象");
+                if (ids.length != 1) {
+                    abp.notify.warn("请选择一个操作对象");
                     return;
                 }
-                for (var i in vm.table.checkModel) {
-                    if (vm.table.checkModel[i].state == 1) {
-                        abp.notify.warn("已发布对象不允许操作");
-                        return;
-                    }
-                };
+                var temp = vm.table.checkModel[ids[0]];
                 abp.message.confirm(
                '删除将导致数据无法显示', //确认提示
                '确定要删除么?',//确认提示（可选参数）
                function (isConfirmed) {
                    if (isConfirmed) {
-                       //...delete user 点击确认后执行
-                       //api/resource/delete
-                       dataFactory.action("api/resource/delete", "", null, { list: ids }).then(function (res) {
+                     
+                       dataFactory.action("api/card/delete?card_id="+temp.card_id, "", null, {  }).then(function (res) {
                            abp.notify.success("删除成功");
                            vm.init();
                        });
@@ -105,23 +91,7 @@
                    });
 
             }
-            vm.public = function () {
-                var ids = Object.getOwnPropertyNames(vm.table.checkModel);
-                if (ids.length <= 0) {
-                    abp.notify.warn("请选择单个操作对象");
-                    return;
-                }
-                for (var i in vm.table.checkModel) {
-                    if (vm.table.checkModel[i].state == 1) {
-                        abp.notify.warn("已发布对象不允许操作");
-                        return;
-                    }
-                }
-                dataFactory.action("api/resource/updateState", "", null, { list: ids, state: 1 }).then(function (res) {
-                    abp.notify.success("更新成功");
-                    vm.init();
-                });
-            }
+      
         }])
 })();
 

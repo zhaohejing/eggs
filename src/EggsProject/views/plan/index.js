@@ -23,8 +23,7 @@
             vm.init = function () {
                 vm.filter.pageNum = vm.table.pageConfig.currentPage;
                 vm.filter.pageSize = vm.table.pageConfig.itemsPerPage;
-
-                dataFactory.action("api/resource/selectAll", "", null, vm.filter)
+                dataFactory.action("api/plan/getPlanList", "", null, vm.filter)
                     .then(function (res) {
                         if (res.result == "1") {
                             vm.table.pageConfig.totalItems = res.total;

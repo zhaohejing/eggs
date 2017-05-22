@@ -29,20 +29,22 @@
                  check-model="vm.table.checkModel"
                  display="vm.table.pageConfig.itemsPerPage"
                  headers="类型,卡券名,券名,库存"
-                 fields="name,type,createTime,note">
+                 fields="card_type,title,card_id,quantity">
               <tbody>
                   <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
                       <td>
                           <input type="checkbox" ng-model="::item.checked"  
                                  ng-click="$event.stopPropagation(); checkOne(item)" />
                       </td>
-                      <td show-td item="item" name="name"></td>
                       <td >
-                          <span ng-show="item.type==1">图片</span>
-                          <span ng-show="item.type==2">视频</span>
+                          <span ng-show="item.card_type==1">代金券</span>
+                          <span ng-show="item.card_type==2">折扣券</span>
+                          <span ng-show="item.card_type==3">礼品券</span>
                       </td>
-                      <td show-td item="item" name="createTime" format="yyyy-MM-dd HH:mm"></td>
-                      <td show-td item="item" name="note"></td>
+                      <td show-td item="item" name="title"></td>
+
+                      <td show-td item="item" name="card_id"></td>
+                      <td show-td item="item" name="quantity"></td>
                     
                   </tr>
               </tbody>
