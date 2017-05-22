@@ -512,6 +512,8 @@
     <Content Include="views\plan\index.js" />
     <Content Include="views\plan\modal.html" />
     <Content Include="views\plan\modal.js" />
+    <Content Include="views\plan\modify.html" />
+    <Content Include="views\plan\modify.js" />
     <Content Include="views\prompt\index.html" />
     <Content Include="views\prompt\index.js" />
     <Content Include="views\prompt\modal.html" />

@@ -55,7 +55,6 @@ MetronicApp.factory('settings', ['$rootScope', function ($rootScope) {
         globalPath: 'assets/global',
         layoutPath: 'assets/layouts/layout',
     };
-
     $rootScope.settings = settings;
 
     return settings;
@@ -162,6 +161,26 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProv
                 }]
             }
         })
+        //添加方案
+       .state("modifyplan", {
+           url: "/modifyplan.html",
+           params: { "id": null },
+           templateUrl: "views/plan/modify.html",
+           data: { pageTitle: '方案管理' },
+           resolve: {
+               deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                   return $ocLazyLoad.load({
+                       name: 'MetronicApp',
+                       insertBefore: '#ng_load_plugins_before',
+                       files: [
+                           'views/plan/modify.js',
+                           'views/plan/modal.js'
+                       ]
+                   });
+               }]
+           }
+       })
+        //中奖提示
          .state("prompt", {
              url: "/prompt.html",
              params: { "id": null },
