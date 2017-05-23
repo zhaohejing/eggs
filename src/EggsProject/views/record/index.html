@@ -25,17 +25,17 @@
                  check-model="vm.table.checkModel"
                  display="vm.table.pageConfig.itemsPerPage"
                  headers="卡券名,领取人,领取时间,使用时间"
-                 fields="card_name,aaaa,bbb,cccc">
+                 fields="title,user_name,receive_time,use_time">
               <tbody>
                   <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
                       <td>
                           <input type="checkbox" ng-model="::item.checked"  
                                  ng-click="$event.stopPropagation(); checkOne(item)" />
                       </td>
-                      <td show-td item="item" name="card_name"></td>
-                      <td show-td item="item" name="aaaa"></td>
-                      <td show-td item="item" name="bbb"></td>
-                      <td show-td item="item" name="cccc"></td>
+                      <td show-td item="item" name="title"></td>
+                      <td show-td item="item" name="user_name"></td>
+                      <td show-td item="item" name="receive_time" format="yyyy-MM-dd HH:mm"></td>
+                      <td show-td item="item" name="use_time" format="yyyy-MM-dd HH:mm"></td>
                     
                   </tr>
               </tbody>

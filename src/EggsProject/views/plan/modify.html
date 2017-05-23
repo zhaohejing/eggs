@@ -23,8 +23,8 @@
                         <div class="form-group form-md-line-input">
                             <label class="col-md-3 control-label" for="cate">选择游戏</label>
                             <div class="col-md-9">
-                                <select class="form-control edited" ui-validate="'$value>0'" ng-class="{'edited':vm.model.card_type>0}" required
-                                        ng-model="vm.model.game_id" ng-options="m.id as m.name for m in vm.games"></select>
+                                <select class="form-control edited" ui-validate="'$value>0'" ng-class="{'edited':vm.plan.card_type>0}" required
+                                        ng-model="vm.plan.game_id" ng-options="m.id as m.name for m in vm.games"></select>
                                 <div class="form-control-focus"> </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             <label class="col-md-3 control-label">每次购买后</label>
                             <div class="col-md-3">
                                 <input type="number" class="form-control" ui-validate="'$value>0'"
-                                       ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
+                                       ng-class="{'edited':vm.plan.least_cost}" required ng-model="vm.plan.least_cost">
                                 <div class="form-control-focus"> </div>
                             </div>
                             <label class="col-md-3 control-label">次</label>
@@ -48,7 +48,7 @@
                             <label class="col-md-3 control-label">单次价格</label>
                             <div class="col-md-9">
                                 <input type="number" class="form-control" placeholder="单次价格" ui-validate="'$value>0'"
-                                       ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
+                                       ng-class="{'edited':vm.plan.least_cost}" required ng-model="vm.plan.least_cost">
                                 <div class="form-control-focus"> </div>
                             </div>
                         </div>
@@ -80,11 +80,8 @@
                         </div>
                         <span>卡券用光后游戏自动下架</span>
                     </div>
-
                 </div>
-                <div  class="row">
-               
-                </div>
+             
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -107,22 +104,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="row in vm.checktable | orderBy:row.order:false">
-                                            <td>{{row.name}}</td>
-                                            <td>{{row.type==1?'图片':'视频'}}</td>
-                                            <td>{{row.note}}</td>
-                                            <td>{{row.time}}</td>
+                                        <tr ng-repeat="row in vm.cardtable ">
+                                            <td>{{row.card_type==1?'代金券':row.card_type==2?'折扣券':'礼品券'}}</td>
+                                            <td>{{row.title}}</td>
+                                            <td>{{row.quantity}}</td>
+                                            <td>{{row.winning_rate}}</td>
                                             <td><i ng-click="vm.remove(row)" class="fa fa-times" aria-hidden="true"></i></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="2">
+                                            <td >
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
                                                         <select class="form-control edited" ui-validate="'$value>0'"
-                                                                ng-class="{'edited':vm.temp.card_type>0}" required
-                                                                ng-model="vm.temp" ng-options=" m.name for m in vm.type"></select>
+                                                                ng-class="{'edited':vm.tempcate }" required ng-change="vm.selectcate()"
+                                                                ng-model="vm.tempcate" ng-options="m.name for m in vm.type"></select>
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                 </div>
@@ -131,8 +128,17 @@
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
                                                         <select class="form-control edited" ui-validate="'$value>0'"
-                                                                ng-class="{'edited':vm.temp.card_type>0}" required
-                                                                ng-model="vm.temp.card_type" ng-options="m.id as m.name for m in vm.type"></select>
+                                                                ng-class="{'edited':vm.tempcard}" required  ng-change="vm.selectcard()"
+                                                                ng-model="vm.tempcard" ng-options="m.title for m in vm.cards"></select>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group form-md-line-input">
+                                                    <div class="col-md-12">
+                                                        <input type="number" class="form-control" placeholder="" required readonly
+                                                               ng-class="{'edited':vm.temp.quantity>0}" ng-model="vm.temp.quantity">
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                 </div>
@@ -141,12 +147,12 @@
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
                                                         <input type="number" class="form-control" placeholder="请输入概率(最高70%)" required
-                                                               ng-class="{'edited':vm.temp.gl>0}" ng-model="vm.temp.gl">
+                                                               ng-class="{'edited':vm.temp.winning_rate>0}" ng-model="vm.temp.winning_rate">
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td >
                                                 <div class="form-group form-md-line-input">
                                                     <button type="button" button-busy="vm.saving" busy-text="添加" class="btn btn-primary blue" ng-click="vm.add()">
                                                         <span>添加</span>
@@ -173,7 +179,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active">
-                             
+                             awdawd
                             </div>
 
                         </div>
@@ -190,7 +196,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active">
-
+                                awdawdawd
                             </div>
 
                         </div>
