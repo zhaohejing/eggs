@@ -56,7 +56,7 @@
                     <div class="col-xs-6">
                         <div class="form-group form-md-radios">
                             <label class="col-md-3 control-label">请选择状态</label>
-                            <div class="col-md-9 md-radio-inline">
+                            <div class="col-md-6 md-radio-inline">
                                 <div class="md-radio">
                                     <input type="radio" id="radio6" name="radio2" class="md-radiobtn" 
                                            value="1" checked ng-model="vm.plan.state">
@@ -77,8 +77,8 @@
                                 </div>
                               
                             </div>
+                            <label class="col-md-3">卡券用光后游戏自动下架</label>
                         </div>
-                        <span>卡券用光后游戏自动下架</span>
                     </div>
                 </div>
              
@@ -117,8 +117,8 @@
                                             <td >
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <select class="form-control edited" ui-validate="'$value>0'"
-                                                                ng-class="{'edited':vm.tempcate }" required ng-change="vm.selectcate()"
+                                                        <select class="form-control edited" 
+                                                                ng-class="{'edited':vm.tempcate }"  ng-change="vm.selectcate()"
                                                                 ng-model="vm.tempcate" ng-options="m.name for m in vm.type"></select>
                                                         <div class="form-control-focus"> </div>
                                                     </div>
@@ -127,8 +127,8 @@
                                             <td>
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <select class="form-control edited" ui-validate="'$value>0'"
-                                                                ng-class="{'edited':vm.tempcard}" required  ng-change="vm.selectcard()"
+                                                        <select class="form-control edited" 
+                                                                ng-class="{'edited':vm.tempcard}"   ng-change="vm.selectcard()"
                                                                 ng-model="vm.tempcard" ng-options="m.title for m in vm.cards"></select>
                                                         <div class="form-control-focus"> </div>
                                                     </div>
@@ -137,7 +137,7 @@
                                             <td>
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <input type="number" class="form-control" placeholder="" required readonly
+                                                        <input type="number" class="form-control" placeholder=""  readonly
                                                                ng-class="{'edited':vm.temp.quantity>0}" ng-model="vm.temp.quantity">
                                                         <div class="form-control-focus"> </div>
                                                     </div>
@@ -146,7 +146,7 @@
                                             <td>
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <input type="number" class="form-control" placeholder="请输入概率(最高70%)" required
+                                                        <input type="number" class="form-control" placeholder="请输入概率(最高70%)" 
                                                                ng-class="{'edited':vm.temp.winning_rate>0}" ng-model="vm.temp.winning_rate">
                                                         <div class="form-control-focus"> </div>
                                                     </div>
@@ -179,7 +179,77 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active">
-                             awdawd
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>组织</th>
+                                            <th>点位</th>
+                                            <th>设备</th>
+                                            <th>id</th>
+                                            <th>删除</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="row in vm.o.coll">
+                                            <td>{{row.org_name}}</td>
+                                            <td>{{row.spot_name}}</td>
+                                            <td>{{row.machine_name}}</td>
+                                            <td>{{row.machine_code}}</td>
+                                            <td><i ng-click="vm.o.remove(row)" class="fa fa-times" aria-hidden="true"></i></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td>
+                                                <div class="form-group form-md-line-input">
+                                                    <div class="col-md-12">
+                                                        <select class="form-control edited" 
+                                                                ng-class="{'edited':vm.o.org }" ng-change="vm.o.selectOrg()"
+                                                                ng-model="vm.o.org" ng-options="m.org_name for m in vm.o.orgs"></select>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group form-md-line-input">
+                                                    <div class="col-md-12">
+                                                        <select class="form-control edited"
+                                                                ng-class="{'edited':vm.o.point}" ng-change="vm.o.selectPoint()"
+                                                                ng-model="vm.o.point" ng-options="m.spot_name for m in vm.o.points"></select>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group form-md-line-input">
+                                                    <div class="col-md-12">
+                                                        <select class="form-control edited"
+                                                                ng-class="{'edited':vm.o.device}"    ng-change="vm.o.selectDevice()"
+                                                                ng-model="vm.o.device" ng-options="m.machine_name for m in vm.o.devices"></select>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group form-md-line-input">
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="" readonly
+                                                               ng-class="{'edited':vm.o.final.machine_code}" ng-model="vm.o.final.machine_code">
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group form-md-line-input">
+                                                    <button type="button" button-busy="vm.saving" busy-text="添加" class="btn btn-primary blue" ng-click="vm.o.add()">
+                                                        <span>添加</span>
+                                                    </button>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
 
                         </div>
