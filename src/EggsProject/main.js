@@ -179,7 +179,11 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProv
                        insertBefore: '#ng_load_plugins_before',
                        files: [
                            'views/plan/modify.js',
-                           'views/plan/modal.js'
+                           'views/plan/modal.js',
+                          "assets/global/plugins/select2/css/select2.min.css",
+                          "assets/global/plugins/select2/css/select2-bootstrap.min.css",
+                          "assets/global/plugins/select2/js/select2.full.min.js",
+                          "assets/global/plugins/select2/js/components-select2.min.js"
                        ]
                    });
                }]

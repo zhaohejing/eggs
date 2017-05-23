@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <div  class="row">
+                <div class="row">
                     <div ng-if="vm.sence.scene_type==1" class="col-xs-6">
                         <div class="form-group form-md-line-input">
                             <label class="col-md-3 control-label">次数限制</label>
@@ -58,7 +58,7 @@
                             <label class="col-md-3 control-label">请选择状态</label>
                             <div class="col-md-6 md-radio-inline">
                                 <div class="md-radio">
-                                    <input type="radio" id="radio6" name="radio2" class="md-radiobtn" 
+                                    <input type="radio" id="radio6" name="radio2" class="md-radiobtn"
                                            value="1" checked ng-model="vm.plan.state">
                                     <label for="radio6">
                                         <span class="inc"></span>
@@ -68,20 +68,20 @@
                                 </div>
                                 <div class="md-radio">
                                     <input type="radio" id="radio7" name="radio2"
-                                            value="0" class="md-radiobtn" ng-model="vm.plan.state">
+                                           value="0" class="md-radiobtn" ng-model="vm.plan.state">
                                     <label for="radio7">
                                         <span></span>
                                         <span class="check"></span>
                                         <span class="box"></span> 下架
                                     </label>
                                 </div>
-                              
+
                             </div>
                             <label class="col-md-3">卡券用光后游戏自动下架</label>
                         </div>
                     </div>
                 </div>
-             
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -114,11 +114,11 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td >
+                                            <td>
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <select class="form-control edited" 
-                                                                ng-class="{'edited':vm.tempcate }"  ng-change="vm.selectcate()"
+                                                        <select class="form-control edited"
+                                                                ng-class="{'edited':vm.tempcate }" ng-change="vm.selectcate()"
                                                                 ng-model="vm.tempcate" ng-options="m.name for m in vm.type"></select>
                                                         <div class="form-control-focus"> </div>
                                                     </div>
@@ -127,8 +127,8 @@
                                             <td>
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <select class="form-control edited" 
-                                                                ng-class="{'edited':vm.tempcard}"   ng-change="vm.selectcard()"
+                                                        <select class="form-control edited"
+                                                                ng-class="{'edited':vm.tempcard}" ng-change="vm.selectcard()"
                                                                 ng-model="vm.tempcard" ng-options="m.title for m in vm.cards"></select>
                                                         <div class="form-control-focus"> </div>
                                                     </div>
@@ -137,7 +137,7 @@
                                             <td>
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <input type="number" class="form-control" placeholder=""  readonly
+                                                        <input type="number" class="form-control" placeholder="" readonly
                                                                ng-class="{'edited':vm.temp.quantity>0}" ng-model="vm.temp.quantity">
                                                         <div class="form-control-focus"> </div>
                                                     </div>
@@ -146,13 +146,13 @@
                                             <td>
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <input type="number" class="form-control" placeholder="请输入概率(最高70%)" 
+                                                        <input type="number" class="form-control" placeholder="请输入概率(最高70%)"
                                                                ng-class="{'edited':vm.temp.winning_rate>0}" ng-model="vm.temp.winning_rate">
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td >
+                                            <td>
                                                 <div class="form-group form-md-line-input">
                                                     <button type="button" button-busy="vm.saving" busy-text="添加" class="btn btn-primary blue" ng-click="vm.add()">
                                                         <span>添加</span>
@@ -203,7 +203,7 @@
                                             <td>
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
-                                                        <select class="form-control edited" 
+                                                        <select class="form-control edited"
                                                                 ng-class="{'edited':vm.o.org }" ng-change="vm.o.selectOrg()"
                                                                 ng-model="vm.o.org" ng-options="m.org_name for m in vm.o.orgs"></select>
                                                         <div class="form-control-focus"> </div>
@@ -224,7 +224,7 @@
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
                                                         <select class="form-control edited"
-                                                                ng-class="{'edited':vm.o.device}"    ng-change="vm.o.selectDevice()"
+                                                                ng-class="{'edited':vm.o.device}" ng-change="vm.o.selectDevice()"
                                                                 ng-model="vm.o.device" ng-options="m.machine_name for m in vm.o.devices"></select>
                                                         <div class="form-control-focus"> </div>
                                                     </div>
@@ -266,7 +266,45 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active">
-                                awdawdawd
+                                <div class="form-group">
+                                    <label for="multi-prepend" class="control-label">Select2 multi prepend</label>
+                                    <div class="input-group select2-bootstrap-prepend">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" data-select2-open="multi-prepend"> State </button>
+                                        </span>
+                                        <select id="multi-prepend"
+                                                class="form-control select2 select2-hidden-accessible"
+                                                multiple="" tabindex="-1" aria-hidden="true">
+                                            <option></option>
+                                            <optgroup label="Alaskan">
+                                                <option value="AK">Alaska</option>
+                                                <option value="HI" disabled="disabled">Hawaii</option>
+                                            </optgroup>
+
+                                        </select>
+                                        <span class="select2 select2-container select2-container--bootstrap select2-container--below" dir="ltr">
+                                            <span class="selection">
+                                                <span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true"
+                                                      aria-expanded="false" tabindex="-1">
+                                                    <ul class="select2-selection__rendered">
+                                                        <li class="select2-selection__choice" title="California">
+                                                            <span class="select2-selection__choice__remove" role="presentation">×</span>California
+                                                        </li>
+                                                        <li class="select2-selection__choice" title="Nevada">
+                                                            <span class="select2-selection__choice__remove" role="presentation">×</span>Nevada
+                                                        </li>
+                                                        <li class="select2-search select2-search--inline">
+                                                            <input class="select2-search__field" type="search" tabindex="0" autocomplete="off"
+                                                                   autocorrect="off" autocapitalize="off" spellcheck="false"
+                                                                   role="textbox" aria-autocomplete="list" placeholder=""
+                                                                   style="width: 0.75em;">
+                                                        </li>
+                                                    </ul>
+                                                </span>
+                                            </span><span class="dropdown-wrapper" aria-hidden="true"></span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
