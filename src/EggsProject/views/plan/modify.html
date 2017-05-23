@@ -1,5 +1,4 @@
 ﻿<div ng-controller="views.plan.modify as vm">
-
     <div class="portlet light bordered">
         <form name="modalform" role="form" novalidate class="form-validation">
             <div class="modal-header">
@@ -10,48 +9,17 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-6">
                         <div class="form-group form-md-line-input">
-                            <div class="form-group form-md-line-input">
-                                <label class="col-md-3 control-label" for="cate">场景名称</label>
-                                <div class="col-md-9">
-                                    <select class="form-control edited" ui-validate="'$value>0'" ng-class="{'edited':vm.sence}" required
-                                            ng-model="vm.sence" ng-options="m.scene_name for m  in vm.scenes"></select>
-                                    <div class="form-control-focus"> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div ng-if="vm.sence.scene_type==1" class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label">次数限制</label>
-                            <label class="col-md-3 control-label">每次购买后</label>
-                            <div class="col-md-3">
-                                <input type="number" class="form-control"  ui-validate="'$value>0'"
-                                       ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
-                                <div class="form-control-focus"> </div>
-                            </div>
-                            <label class="col-md-3 control-label">次</label>
-                        </div>
-                    </div>
-
-                </div>
-                <div ng-if="vm.sence.scene_type==2" class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group form-md-line-input">
-                            <label class="col-md-3 control-label">单次价格</label>
+                            <label class="col-md-3 control-label" for="cate">场景名称</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" placeholder="单次价格" ui-validate="'$value>0'"
-                                       ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
+                                <select class="form-control edited" ui-validate="'$value>0'" ng-class="{'edited':vm.sence}" required
+                                        ng-model="vm.sence" ng-options="m.scene_name for m  in vm.scenes"></select>
                                 <div class="form-control-focus"> </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div  class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-6">
                         <div class="form-group form-md-line-input">
                             <label class="col-md-3 control-label" for="cate">选择游戏</label>
                             <div class="col-md-9">
@@ -62,18 +30,40 @@
                         </div>
                     </div>
                 </div>
-             
+                <div ng-if="vm.sence.scene_type==1" class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">次数限制</label>
+                            <label class="col-md-3 control-label">每次购买后</label>
+                            <div class="col-md-3">
+                                <input type="number" class="form-control" ui-validate="'$value>0'"
+                                       ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
+                                <div class="form-control-focus"> </div>
+                            </div>
+                            <label class="col-md-3 control-label">次</label>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="vm.sence.scene_type==2" class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group form-md-line-input">
+                            <label class="col-md-3 control-label">单次价格</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" placeholder="单次价格" ui-validate="'$value>0'"
+                                       ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
+                                <div class="form-control-focus"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr />
             <div class="row">
                 <div class="col-xs-8 text-left">
                     <span>奖品设置</span>
                 </div>
-                <div class="col-xs-4 text-right">
-                    <button class="btn btn-primary blue" ng-click="vm.addadsense()"><i class="fa fa-plus"></i> 添加广告</button>
-                </div>
             </div>
-            <div ng-if="vm.checktable.length>0" class="row">
+            <div class="row">
                 <table class="table">
                     <thead>
                         <tr>
@@ -90,30 +80,59 @@
                             <td>{{row.type==1?'图片':'视频'}}</td>
                             <td>{{row.note}}</td>
                             <td>{{row.time}}</td>
-                            <td><i ng-click="vm.sort(row,1)" class="fa fa-toggle-up" ></i> &nbsp;
-                             <i ng-click="vm.sort(row,-1)" class="fa fa-toggle-down" aria-hidden="true"></i></td>
                             <td><i ng-click="vm.remove(row)" class="fa fa-times" aria-hidden="true"></i></td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-group form-md-line-input">
+                                    <div class="col-md-12">
+                                        <select class="form-control edited" ui-validate="'$value>0'"
+                                                ng-class="{'edited':vm.temp.card_type>0}" required
+                                                ng-model="vm.temp" ng-options=" m.name for m in vm.type"></select>
+                                        <div class="form-control-focus"> </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group form-md-line-input">
+                                    <div class="col-md-12">
+                                        <select class="form-control edited" ui-validate="'$value>0'"
+                                                ng-class="{'edited':vm.temp.card_type>0}" required
+                                                ng-model="vm.temp.card_type" ng-options="m.id as m.name for m in vm.type"></select>
+                                        <div class="form-control-focus"> </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group form-md-line-input">
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control" placeholder="请输入概率(最高70%)" required
+                                               ng-class="{'edited':vm.temp.gl>0}" ng-model="vm.temp.gl">
+                                        <div class="form-control-focus"> </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group form-md-line-input">
+                                    <button type="button" button-busy="vm.saving" busy-text="添加"  class="btn btn-primary blue" ng-click="vm.add()">
+                                        <span>添加</span>
+                                    </button>
+                                </div>
+                             
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             <hr />
             <div class="row">
-                <div class="col-xs-8 text-left">
-                    <span>适用设备</span>
-                </div>
-                <div class="col-xs-4 text-right">
-                    <button class="btn btn-primary blue" ng-click="vm.addadsense()"><i class="fa fa-plus"></i> 添加广告</button>
-                </div>
+        
             </div>
             <hr />
             <div class="row">
-                <div class="col-xs-8 text-left">
-                    <span>未中奖提示</span>
-                </div>
-                <div class="col-xs-4 text-right">
-                    <button class="btn btn-primary blue" ng-click="vm.addadsense()"><i class="fa fa-plus"></i> 添加广告</button>
-                </div>
+               
             </div>
             <div class="modal-footer">
                 <button ng-disabled="vm.saving" type="button" class="btn btn-default" ng-click="vm.cancel()">返回</button>
@@ -126,8 +145,5 @@
         </form>
     </div>
 </div>
-
-
-
 
 

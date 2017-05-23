@@ -9,6 +9,7 @@
         var vm = this;
         vm.planId = $stateParams.id;
         vm.scenes = [{ scene_type: 1, scene_name: "购买之后" }, { scene_type: 2, scene_name: "每日游戏" }];
+        vm.type = [{ id: 1, name: "代金券" }, { id: 2, name: "折扣券" }, { id: 3, name: "礼品券" }];
         vm.games = [{ id: 1, name: "砸蛋" }, { id: 2, name: "飞镖" }];
         vm.plan = {};
         vm.sence = { scene_type:1 };
