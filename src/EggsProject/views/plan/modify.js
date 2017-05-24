@@ -15,15 +15,11 @@
             //游戏类型
             vm.games = [{ id: 1, name: "砸蛋" }, { id: 2, name: "飞镖" }];
             vm.plan = {};
-            vm.sence = {};
-            vm.game = {};
             if (vm.planId) {
                 dataFactory.action("api/plan/getPlan?id=" + vm.planId, "GET", null, {})
                   .then(function (res) {
                       if (res.result == "1") {
                           vm.plan = res.data;
-                          vm.sence = { scene_type: vm.plan.scene_type, scene_name: vm.plan.scene_name };
-                          vm.game = { id: vm.plan.game_id, name: vm.plan.game_name };
                           vm.c.cardlist = vm.plan.cardList;
                           angular.forEach(vm.plan.tipsList, function (v, i) {
                               vm.t.select.push({ tips_id: v.tips_id, tips_name: v.tips_name, ticked: true });
