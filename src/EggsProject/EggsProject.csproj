@@ -96,6 +96,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\global\plugins\isteven-multi\isteven-multi-select.css" />
+    <Content Include="assets\global\plugins\isteven-multi\isteven-multi-select.js" />
     <Content Include="assets\global\plugins\select2\js\components-select2.min.js" />
     <Content Include="packages.config" />
     <Content Include="assets\global\plugins\angularjs\angular-cookies.min.js.map" />

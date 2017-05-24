@@ -11,7 +11,7 @@ var MetronicApp = angular.module("MetronicApp", [
       'objectTable',//table表格
     'objPagination',//分页
     'angularFileUpload',//文件上传
-    'abp', 'ngLocale'
+    'abp', 'ngLocale', "isteven-multi-select"
 ]);
 
 //懒加载
@@ -180,10 +180,6 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProv
                        files: [
                            'views/plan/modify.js',
                            'views/plan/modal.js',
-                          "assets/global/plugins/select2/css/select2.min.css",
-                          "assets/global/plugins/select2/css/select2-bootstrap.min.css",
-                          "assets/global/plugins/select2/js/select2.full.min.js",
-                          "assets/global/plugins/select2/js/components-select2.min.js"
                        ]
                    });
                }]

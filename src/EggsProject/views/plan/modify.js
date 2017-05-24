@@ -58,11 +58,20 @@
                 vm.temp.quantity = vm.tempcard.quantity;
                 vm.temp.winning_rate = 0;
             }
-
-            vm.c = {
-                cate: {},
-                card: {},
-            }
+            vm.t = {
+                list: [], select: [], init: function () {
+                    dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999 })
+              .then(function (res) {
+                  if (res.result == "1") {
+                      angular.forEach(res.list, function (v, i) {
+                          v.ticked = false;
+                          vm.t.list.push(v);
+                      })
+                  }
+              });
+                }
+            };
+            vm.t.init();
             vm.o = {
                 coll: [],
                 final: {},
@@ -133,6 +142,11 @@
                     vm.o.coll.splice($.inArray(row, vm.o.coll), 1);
                 }
             }
+          
+           
+
+
+
 
             vm.cancel = function () {
                 $state.go("plan");

@@ -266,44 +266,12 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active">
-                                <div class="form-group">
-                                    <label for="multi-prepend" class="control-label">Select2 multi prepend</label>
-                                    <div class="input-group select2-bootstrap-prepend">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" data-select2-open="multi-prepend"> State </button>
-                                        </span>
-                                        <select id="multi-prepend"
-                                                class="form-control select2 select2-hidden-accessible"
-                                                multiple="" tabindex="-1" aria-hidden="true">
-                                            <option></option>
-                                            <optgroup label="Alaskan">
-                                                <option value="AK">Alaska</option>
-                                                <option value="HI" disabled="disabled">Hawaii</option>
-                                            </optgroup>
-
-                                        </select>
-                                        <span class="select2 select2-container select2-container--bootstrap select2-container--below" dir="ltr">
-                                            <span class="selection">
-                                                <span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true"
-                                                      aria-expanded="false" tabindex="-1">
-                                                    <ul class="select2-selection__rendered">
-                                                        <li class="select2-selection__choice" title="California">
-                                                            <span class="select2-selection__choice__remove" role="presentation">×</span>California
-                                                        </li>
-                                                        <li class="select2-selection__choice" title="Nevada">
-                                                            <span class="select2-selection__choice__remove" role="presentation">×</span>Nevada
-                                                        </li>
-                                                        <li class="select2-search select2-search--inline">
-                                                            <input class="select2-search__field" type="search" tabindex="0" autocomplete="off"
-                                                                   autocorrect="off" autocapitalize="off" spellcheck="false"
-                                                                   role="textbox" aria-autocomplete="list" placeholder=""
-                                                                   style="width: 0.75em;">
-                                                        </li>
-                                                    </ul>
-                                                </span>
-                                            </span><span class="dropdown-wrapper" aria-hidden="true"></span>
-                                        </span>
-                                    </div>
+                                <div isteven-multi-select
+                                     input-model="vm.t.list"
+                                     output-model="vm.t.select"
+                                     button-label="tips"
+                                     item-label="tips"
+                                     tick-property="ticked">
                                 </div>
                             </div>
 
