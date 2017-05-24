@@ -27,7 +27,7 @@
                   });
             }
             vm.plan = {};
-            vm.sence = { scene_type: 1 };
+          
         //卡券对象
             vm.c = {
                 temp:{},
@@ -169,13 +169,35 @@
             vm.o.getorgs();
             //保存
             vm.save = function () {
-                if (vm.checktable.length <= 0) {
-                    abp.notify.warn("请选择资源");
+                if (!vm.sence) {
+                    abp.notify.warn("请选择场景");
                     return;
                 }
-                vm.plan.resourceIds = _.map(vm.checktable, function (item) {
-                    return item.id
-                });
+                vm.plan.scene_type = vm.sence.scene_type;
+                vm.plan.scene_name = vm.sence.scene_name;
+                if (!vm.game) {
+                    abp.notify.warn("请选择游戏");
+                    return;
+                }
+                vm.plan.game_id = vm.game.id;
+                vm.plan.game_name = vm.game.name;
+
+                if (vm.c.cardlist.length <= 0) {
+                    abp.notify.warn("请选择卡券");
+                    return;
+                }
+                vm.plan.cardList = vm.c.cardlist;
+                if (vm.o.coll.length <= 0) {
+                    abp.notify.warn("请选择组织");
+                    return;
+                }
+                vm.plan.machineList = vm.o.coll;
+                if (vm.t.select.length <= 0) {
+                    abp.notify.warn("请选择提示信息");
+                    return;
+                }
+                vm.plan.tipsList = vm.t.select;
+
                 var url = vm.plan.id && vm.plan.id > 0 ? "api/package/update" : "api/package/add";
                 vm.plan.state = vm.plan.state ? 1 : 0;
                 dataFactory.action(url, "", null, vm.plan).then(function (res) {
