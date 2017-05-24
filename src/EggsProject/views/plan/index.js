@@ -35,9 +35,7 @@
                     });
             };
             vm.init();
-            vm.add = function () {
-                $state.go("modifyplan");
-            }
+    
             vm.edit = function () {
                 var id = Object.getOwnPropertyNames(vm.table.checkModel);
                 if (id.length != 1) {

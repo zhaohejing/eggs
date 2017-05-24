@@ -14,20 +14,29 @@
             vm.type = [{ id: 1, name: "代金券" }, { id: 2, name: "折扣券" }, { id: 3, name: "礼品券" }];
             //游戏类型
             vm.games = [{ id: 1, name: "砸蛋" }, { id: 2, name: "飞镖" }];
+            vm.plan = {};
+            vm.sence = {};
+            vm.game = {};
             if (vm.planId) {
                 dataFactory.action("api/plan/getPlan?id=" + vm.planId, "GET", null, {})
                   .then(function (res) {
                       if (res.result == "1") {
                           vm.plan = res.data;
-                          for (var i = 0; i < vm.plan.resources.length; i++) {
-                              vm.plan.resources[i].order = i;
-                          }
-                          vm.cardlist = vm.plan.resources;
+                          vm.sence = { scene_type: vm.plan.scene_type, scene_name: vm.plan.scene_name };
+                          vm.game = { id: vm.plan.game_id, name: vm.plan.game_name };
+                          vm.c.cardlist = vm.plan.cardList;
+                          angular.forEach(vm.plan.tipsList, function (v, i) {
+                              vm.t.select.push({ tips_id: v.tips_id, tips_name: v.tips_name, ticked: true });
+                          });
+                      
+                          vm.o.coll = vm.plan.machineList;
                       }
                   });
+            } else {
+                abp.notify.warn("请选择方案再操作");
+                $state.go("plan");
             }
-            vm.plan = {};
-          
+        
         //卡券对象
             vm.c = {
                 temp:{},
@@ -83,8 +92,7 @@
               .then(function (res) {
                   if (res.result == "1") {
                       angular.forEach(res.list, function (v, i) {
-                          v.ticked = false;
-                          vm.t.list.push(v);
+                          vm.t.list.push({ tips_id: v.id, tips_name: v.tips, ticked: false });
                       })
                   }
               });
@@ -198,12 +206,11 @@
                 }
                 vm.plan.tipsList = vm.t.select;
 
-                var url = vm.plan.id && vm.plan.id > 0 ? "api/package/update" : "api/package/add";
-                vm.plan.state = vm.plan.state ? 1 : 0;
+                var url ="api/plan/updatePlan";
                 dataFactory.action(url, "", null, vm.plan).then(function (res) {
                     if (res.result == "1") {
                         abp.notify.success("成功");
-                        $state.go("adsensepack");
+                        $state.go("plan");
                     } else {
                         abp.notify.error(res.errorMsg);
                     }
