@@ -14,11 +14,6 @@
             vm.type = [{ id: 1, name: "代金券" }, { id: 2, name: "折扣券" }, { id: 3, name: "礼品券" }];
             //游戏类型
             vm.games = [{ id: 1, name: "砸蛋" }, { id: 2, name: "飞镖" }];
-            vm.temp = {};
-            vm.plan = {};
-            vm.cardtable = [];
-            vm.sence = { scene_type: 1 };
-            vm.cards = [];
             if (vm.planId) {
                 dataFactory.action("api/plan/getPlan?id=" + vm.planId, "GET", null, {})
                   .then(function (res) {
@@ -31,33 +26,57 @@
                       }
                   });
             }
-            //选择分类
-            vm.selectcate = function () {
-                if (!vm.tempcate) {
-                    return;
-                }
-                var arr = [];
-                if (vm.cardtable.length > 0) {
-                    angular.forEach(vm.cardtable, function (v, i) {
-                        arr.push(v.card_id);
-                    });
-                }
-                dataFactory.action("api/plan/getCardList", "", null, { card_type: vm.tempcate.id, card_ids: arr })
-                .then(function (res) {
-                    if (res.result == "1") {
-                        vm.cards = res.data;
-
+            vm.plan = {};
+            vm.sence = { scene_type: 1 };
+        //卡券对象
+            vm.c = {
+                temp:{},
+                cardlist:[],
+                tempcate: {},
+                tempcard:{},
+                cards: [],
+                cates: [],
+                selectcate: function () {
+                    if (!vm.c.tempcate) {
+                        return;
                     }
-                });
+                    var arr = [];
+                    if (vm.c.cardlist > 0) {
+                        angular.forEach(vm.c.cardlist, function (v, i) {
+                            arr.push(v.card_id);
+                        });
+                    }
+                    dataFactory.action("api/plan/getCardList", "", null, { card_type: vm.c.tempcate.id, card_ids: arr })
+                    .then(function (res) {
+                        if (res.result == "1") {
+                            vm.c.cards = res.data;
+                        }
+                    });
+                },
+                selectcard: function () {
+                    vm.c.temp.card_type = vm.c.tempcate.id;
+                    vm.c.temp.card_id = vm.c.tempcard.card_id;
+                    vm.c.temp.title = vm.c.tempcard.title;
+                    vm.c.temp.quantity = vm.c.tempcard.quantity;
+                    vm.c.temp.winning_rate = 0;
+                },
+                remove: function (row) {
+                    vm.c.cardlist.splice($.inArray(row, vm.c.cardlist), 1);
+                },add: function () {
+                    if (!vm.c.temp.card_id) {
+                        abp.notify.warn("请选则卡片再添加"); return;
+                    }
+                    else if (vm.c.temp.winning_rate > 70) {
+                        abp.notify.warn("单个中奖概率最好为70%"); return;
+                    }
+                    vm.c.cardlist.push(vm.c.temp);
+                    vm.c.tempcate = {};
+                    vm.c.tempcard = {};
+                    vm.c.temp = {};
+                }
             }
-            //选择卡片
-            vm.selectcard = function () {
-                vm.temp.card_type = vm.tempcate.id;
-                vm.temp.card_id = vm.tempcard.card_id;
-                vm.temp.title = vm.tempcard.title;
-                vm.temp.quantity = vm.tempcard.quantity;
-                vm.temp.winning_rate = 0;
-            }
+        
+            //提示对象
             vm.t = {
                 list: [], select: [], init: function () {
                     dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999 })
@@ -72,6 +91,7 @@
                 }
             };
             vm.t.init();
+            //组织机构对象
             vm.o = {
                 coll: [],
                 final: {},
@@ -142,27 +162,10 @@
                     vm.o.coll.splice($.inArray(row, vm.o.coll), 1);
                 }
             }
-          
-           
-
-
-
-
             vm.cancel = function () {
                 $state.go("plan");
             }
-            vm.add = function () {
-                if (!vm.temp.card_id) {
-                    abp.notify.warn("请选则卡片再添加"); return;
-                }
-                else if (vm.temp.winning_rate > 70) {
-                    abp.notify.warn("单个中奖概率最好为70%"); return;
-                }
-                vm.cardtable.push(vm.temp);
-                vm.tempcate = {};
-                vm.tempcard = {};
-                vm.temp = {};
-            }
+         
             vm.o.getorgs();
             //保存
             vm.save = function () {
@@ -184,9 +187,7 @@
                     }
                 })
             }
-            vm.remove = function (row) {
-                vm.cardtable.splice($.inArray(row, vm.cardtable), 1);
-            }
+          
         }]);
 })();
 

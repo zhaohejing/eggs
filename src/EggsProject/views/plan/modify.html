@@ -104,12 +104,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="row in vm.cardtable ">
+                                        <tr ng-repeat="row in vm.c.cardlist ">
                                             <td>{{row.card_type==1?'代金券':row.card_type==2?'折扣券':'礼品券'}}</td>
                                             <td>{{row.title}}</td>
                                             <td>{{row.quantity}}</td>
                                             <td>{{row.winning_rate}}</td>
-                                            <td><i ng-click="vm.remove(row)" class="fa fa-times" aria-hidden="true"></i></td>
+                                            <td><i ng-click="vm.c.remove(row)" class="fa fa-times" aria-hidden="true"></i></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
@@ -118,8 +118,8 @@
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
                                                         <select class="form-control edited"
-                                                                ng-class="{'edited':vm.tempcate }" ng-change="vm.selectcate()"
-                                                                ng-model="vm.tempcate" ng-options="m.name for m in vm.type"></select>
+                                                                ng-class="{'edited':vm.c.tempcate }" ng-change="vm.c.selectcate()"
+                                                                ng-model="vm.c.tempcate" ng-options="m.name for m in vm.type"></select>
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                 </div>
@@ -128,8 +128,8 @@
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
                                                         <select class="form-control edited"
-                                                                ng-class="{'edited':vm.tempcard}" ng-change="vm.selectcard()"
-                                                                ng-model="vm.tempcard" ng-options="m.title for m in vm.cards"></select>
+                                                                ng-class="{'edited':vm.c.tempcard}" ng-change="vm.c.selectcard()"
+                                                                ng-model="vm.c.tempcard" ng-options="m.title for m in vm.c.cards"></select>
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                 </div>
@@ -138,7 +138,7 @@
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
                                                         <input type="number" class="form-control" placeholder="" readonly
-                                                               ng-class="{'edited':vm.temp.quantity>0}" ng-model="vm.temp.quantity">
+                                                               ng-class="{'edited':vm.c.temp.quantity>0}" ng-model="vm.c.temp.quantity">
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                 </div>
@@ -147,14 +147,14 @@
                                                 <div class="form-group form-md-line-input">
                                                     <div class="col-md-12">
                                                         <input type="number" class="form-control" placeholder="请输入概率(最高70%)"
-                                                               ng-class="{'edited':vm.temp.winning_rate>0}" ng-model="vm.temp.winning_rate">
+                                                               ng-class="{'edited':vm.c.temp.winning_rate>0}" ng-model="vm.c.temp.winning_rate">
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group form-md-line-input">
-                                                    <button type="button" button-busy="vm.saving" busy-text="添加" class="btn btn-primary blue" ng-click="vm.add()">
+                                                    <button type="button" button-busy="vm.saving" busy-text="添加" class="btn btn-primary blue" ng-click="vm.c.add()">
                                                         <span>添加</span>
                                                     </button>
                                                 </div>
