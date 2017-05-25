@@ -8,6 +8,20 @@
             });
             var vm = this;
             vm.planId = $stateParams.id;
+            //提示对象
+            vm.t = {
+                list: [], select: [], init: function () {
+                    dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999 })
+              .then(function (res) {
+                  if (res.result == "1") {
+                      angular.forEach(res.list, function (v, i) {
+                          vm.t.list.push({ tips_id: v.id, tips_name: v.tips, ticked: false });
+                      })
+                  }
+              });
+                }
+            };
+            vm.t.init();
             //场景
             vm.scenes = [{ scene_type: 1, scene_name: "购买之后" }, { scene_type: 2, scene_name: "每日游戏" }];
             //代金券类型
@@ -22,27 +36,27 @@
                           vm.plan = res.data;
                           vm.c.cardlist = vm.plan.cardList;
                           vm.o.coll = vm.plan.machineList;
+
                           angular.forEach(vm.plan.tipsList, function (v, i) {
                               angular.forEach(vm.t.list, function (b, ii) {
                                   if (v.tips_id == b.tips_id) {
                                       b.ticked = true;
                                   }
                               })
-                         });
-                      
+                          });
+
                       }
                   });
             } else {
                 abp.notify.warn("请选择方案再操作");
                 $state.go("plan");
             }
-        
-        //卡券对象
+            //卡券对象
             vm.c = {
-                temp:{},
-                cardlist:[],
+                temp: {},
+                cardlist: [],
                 tempcate: {},
-                tempcard:{},
+                tempcard: {},
                 cards: [],
                 cates: [],
                 selectcate: function () {
@@ -71,7 +85,7 @@
                 },
                 remove: function (row) {
                     vm.c.cardlist.splice($.inArray(row, vm.c.cardlist), 1);
-                },add: function () {
+                }, add: function () {
                     if (!vm.c.temp.card_id) {
                         abp.notify.warn("请选则卡片再添加"); return;
                     }
@@ -84,21 +98,6 @@
                     vm.c.temp = {};
                 }
             }
-        
-            //提示对象
-            vm.t = {
-                list: [], select: [], init: function () {
-                    dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999 })
-              .then(function (res) {
-                  if (res.result == "1") {
-                      angular.forEach(res.list, function (v, i) {
-                          vm.t.list.push({ tips_id: v.id, tips_name: v.tips, ticked: false });
-                      })
-                  }
-              });
-                }
-            };
-            vm.t.init();
             //组织机构对象
             vm.o = {
                 coll: [],
@@ -170,11 +169,10 @@
                     vm.o.coll.splice($.inArray(row, vm.o.coll), 1);
                 }
             }
+            vm.o.getorgs();
             vm.cancel = function () {
                 $state.go("plan");
             }
-         
-            vm.o.getorgs();
             //保存
             vm.save = function () {
                 if (!vm.plan.scene_type) {
@@ -200,7 +198,7 @@
                     return;
                 }
                 vm.plan.tipsList = vm.t.select;
-                var url ="api/plan/updatePlan";
+                var url = "api/plan/updatePlan";
                 dataFactory.action(url, "", null, vm.plan).then(function (res) {
                     if (res.result == "1") {
                         abp.notify.success("成功");
@@ -210,7 +208,7 @@
                     }
                 })
             }
-          
+
         }]);
 })();
 
