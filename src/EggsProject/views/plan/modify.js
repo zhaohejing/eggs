@@ -21,11 +21,15 @@
                       if (res.result == "1") {
                           vm.plan = res.data;
                           vm.c.cardlist = vm.plan.cardList;
-                          angular.forEach(vm.plan.tipsList, function (v, i) {
-                              vm.t.select.push({ tips_id: v.tips_id, tips_name: v.tips_name, ticked: true });
-                          });
-                      
                           vm.o.coll = vm.plan.machineList;
+                          angular.forEach(vm.plan.tipsList, function (v, i) {
+                              angular.forEach(vm.t.list, function (b, ii) {
+                                  if (v.tips_id == b.tips_id) {
+                                      b.ticked = true;
+                                  }
+                              })
+                         });
+                      
                       }
                   });
             } else {
@@ -173,19 +177,14 @@
             vm.o.getorgs();
             //保存
             vm.save = function () {
-                if (!vm.sence) {
+                if (!vm.plan.scene_type) {
                     abp.notify.warn("请选择场景");
                     return;
                 }
-                vm.plan.scene_type = vm.sence.scene_type;
-                vm.plan.scene_name = vm.sence.scene_name;
-                if (!vm.game) {
+                if (!vm.plan.game_id) {
                     abp.notify.warn("请选择游戏");
                     return;
                 }
-                vm.plan.game_id = vm.game.id;
-                vm.plan.game_name = vm.game.name;
-
                 if (vm.c.cardlist.length <= 0) {
                     abp.notify.warn("请选择卡券");
                     return;
@@ -201,7 +200,6 @@
                     return;
                 }
                 vm.plan.tipsList = vm.t.select;
-
                 var url ="api/plan/updatePlan";
                 dataFactory.action(url, "", null, vm.plan).then(function (res) {
                     if (res.result == "1") {
