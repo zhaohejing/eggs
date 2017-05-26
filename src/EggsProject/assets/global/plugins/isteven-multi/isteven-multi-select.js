@@ -432,7 +432,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
 
                     // we refresh input model as well
                     var inputModelIndex = $scope.filteredModel[ index ][ $scope.indexProperty ];                                        
-                    $scope.inputModel[ inputModelIndex ][ $scope.tickProperty ] = $scope.filteredModel[ index ][ $scope.tickProperty ];                    
+                    $scope.inputModel[inputModelIndex][$scope.tickProperty] = $scope.filteredModel[index][$scope.tickProperty];                    
                 }                                  
 
                 // we execute the callback function here
@@ -672,7 +672,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                         if ( !$scope.isDisabled ) {                        
                             $scope.tabIndex = $scope.tabIndex + helperItemsLength;
                             if ( $scope.inputModel.length > 0 ) {
-                                formElements[ $scope.tabIndex ].focus();
+                              //  formElements[ $scope.tabIndex ].focus();
                                 $scope.setFocusStyle( $scope.tabIndex );
                                 // blur button in vain
                                 angular.element( element ).children()[ 0 ].blur();
