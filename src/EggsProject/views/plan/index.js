@@ -1,6 +1,6 @@
 ﻿(function () {
-    angular.module('MetronicApp').controller('views.plan.index', ['$scope', 'settings', '$uibModal', "dataFactory","$state",
-        function ($scope, settings, $uibModal, dataFactory, $state) {
+    angular.module('MetronicApp').controller('views.plan.index', ['$scope', 'settings', '$uibModal', "dataFactory","$state",'appSession',
+        function ($scope, settings, $uibModal, dataFactory, $state, appSession) {
             // ajax初始化
             $scope.$on('$viewContentLoaded', function () {
                 App.initAjax();
@@ -23,6 +23,7 @@
             vm.init = function () {
                 vm.filter.pageNum = vm.table.pageConfig.currentPage;
                 vm.filter.pageSize = vm.table.pageConfig.itemsPerPage;
+                vm.filter.orgId = appSession.orgid;
                 dataFactory.action("api/plan/getPlanList", "", null, vm.filter)
                     .then(function (res) {
                         if (res.result == "1") {

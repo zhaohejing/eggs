@@ -33,7 +33,7 @@
                             if (res.code == 200) {
                                 var val = { username: res.user_name, orgid: res.org_id, orgName: res.org_name };
                                 var temp = JSON.stringify(val);
-                                $.cookie("metroResult", temp, {
+                                $.cookie("eggsResult", temp, {
                                     expires: 1,//有效日期
                                     path: "/",//cookie的路 径
                                     secure: false //true,cookie的传输会要求一个安全协议,否则反之
@@ -69,7 +69,7 @@
                         if (res.code == 200) {
                             var val = { username: res.user_name, orgid: res.org_id, orgName: res.org_name };
                             var temp = JSON.stringify(val);
-                            $.cookie("metroResult", temp, {
+                            $.cookie("eggsResult", temp, {
                                 expires: 1,//有效日期
                                 path: "/",//cookie的路 径
                                 secure: false //true,cookie的传输会要求一个安全协议,否则反之
@@ -89,7 +89,7 @@
     return {
         //main function to initiate the module
         init: function () {
-            var cookie = $.cookie("metroResult");
+            var cookie = $.cookie("eggsResult");
             if (cookie != "" && cookie != undefined) {
                 try {
                     var cook = $.parseJSON(cookie);

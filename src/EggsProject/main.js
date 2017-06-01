@@ -30,7 +30,7 @@ MetronicApp.config(['$controllerProvider', function ($controllerProvider) {
 MetronicApp.factory('appSession', [
           function () {
               var _session = null;
-              var cookie = $.cookie("metroResult");
+              var cookie = $.cookie("eggsResult");
               if (cookie!= ""&&cookie!=undefined) {
                   var temp = $.parseJSON(cookie);
                   _session = temp;
@@ -78,7 +78,7 @@ MetronicApp.controller('HeaderController', ['$scope', "appSession", function ($s
     vm = this;
     vm.user = appSession;
     vm.out = function () {
-        $.cookie("metroResult", null, { path: "/" });
+        $.cookie("eggsResult", null, { path: "/" });
         location.href = "index.html";
     }
 }]);

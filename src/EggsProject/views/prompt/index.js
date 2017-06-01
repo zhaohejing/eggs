@@ -1,6 +1,6 @@
 ﻿(function () {
-    angular.module('MetronicApp').controller('views.prompt.index', ['$scope', 'settings', '$uibModal', "dataFactory",
-        function ($scope, settings, $uibModal, dataFactory) {
+    angular.module('MetronicApp').controller('views.prompt.index', ['$scope', 'settings', '$uibModal', "dataFactory",'appSession',
+        function ($scope, settings, $uibModal, dataFactory, appSession) {
             // ajax初始化
             $scope.$on('$viewContentLoaded', function () {
                 App.initAjax();
@@ -23,7 +23,7 @@
             vm.init = function () {
                 vm.filter.pageNum = vm.table.pageConfig.currentPage;
                 vm.filter.pageSize = vm.table.pageConfig.itemsPerPage;
-
+                vm.filter.orgId = appSession.orgid;
                 dataFactory.action("api/tips/getTipsList", "", null, vm.filter)
                     .then(function (res) {
                         if (res.result == "1") {
