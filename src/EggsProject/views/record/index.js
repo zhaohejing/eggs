@@ -23,7 +23,7 @@
             vm.init = function () {
                 vm.filter.pageNum = vm.table.pageConfig.currentPage;
                 vm.filter.pageSize = vm.table.pageConfig.itemsPerPage;
-                vm.filter.orgId = appSession.orgid;
+                vm.filter.org_id = appSession.orgid;
                 dataFactory.action("api/plan/getRecordList", "", null, vm.filter)
                     .then(function (res) {
                         if (res.result == "1") {
