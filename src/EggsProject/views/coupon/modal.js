@@ -73,7 +73,7 @@
 
 
             vm.initgift = function () {
-                dataFactory.action("api/card/getGiftList", "", null, {}).then(function (res) {
+                dataFactory.action("api/card/getGiftList", "GET", null, {}).then(function (res) {
                     if (res.result == "1") {
                         vm.gifts = res.data;
                     } else {
