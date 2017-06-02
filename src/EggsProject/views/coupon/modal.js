@@ -1,6 +1,6 @@
 ﻿angular.module('MetronicApp').controller('views.coupon.modal',
-    ['$scope', 'settings', '$uibModalInstance', 'model',  'dataFactory',
-        function ($scope, settings, $uibModalInstance, model, dataFactory) {
+    ['$scope', 'settings', '$uibModalInstance', 'model',  'dataFactory','appSession',
+        function ($scope, settings, $uibModalInstance, model, dataFactory, appSession) {
             $scope.$on('$viewContentLoaded', function () {
                 App.initAjax();
 
@@ -73,7 +73,7 @@
 
 
             vm.initgift = function () {
-                dataFactory.action("api/card/getGiftList", "GET", null, {}).then(function (res) {
+                dataFactory.action("api/card/getGiftList?org_id="+appSession.orgid, "GET", null, { }).then(function (res) {
                     if (res.result == "1") {
                         vm.gifts = res.data;
                     } else {
