@@ -1,7 +1,7 @@
 ﻿(function () {
     angular.module('MetronicApp').controller('views.plan.modify',
-        ['$scope', 'settings', '$uibModal', '$state', '$stateParams', 'dataFactory',
-        function ($scope, settings, $uibModal, $state, $stateParams, dataFactory) {
+        ['$scope', 'settings', '$uibModal', '$state', '$stateParams', 'dataFactory','appSession',
+        function ($scope, settings, $uibModal, $state, $stateParams, dataFactory, appSession) {
             $scope.$on('$viewContentLoaded', function () {
                 // initialize core components
                 App.initAjax();
@@ -107,7 +107,7 @@
                 points: [],
                 devices: [],
                 getorgs: function () {
-                    dataFactory.action("api/plan/selectOrgList", "GET", null, {})
+                    dataFactory.action("api/plan/selectOrgList?org_id="+appSession.orgid, "GET", null, {})
                 .then(function (res) {
                     if (res.result == "1") {
                         vm.o.orgs = res.data;
