@@ -1,6 +1,6 @@
 ﻿(function () {
     angular.module('MetronicApp').controller('views.plan.modify',
-        ['$scope', 'settings', '$uibModal', '$state', '$stateParams', 'dataFactory','appSession',
+        ['$scope', 'settings', '$uibModal', '$state', '$stateParams', 'dataFactory', 'appSession',
         function ($scope, settings, $uibModal, $state, $stateParams, dataFactory, appSession) {
             $scope.$on('$viewContentLoaded', function () {
                 // initialize core components
@@ -10,8 +10,10 @@
             vm.planId = $stateParams.id;
             //提示对象
             vm.t = {
-                list: [], select: [], init: function () {
-                    dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999,org_id:appSession.orgid })
+                list: [],
+                select: [],
+                init: function () {
+                    dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999, org_id: appSession.orgid })
               .then(function (res) {
                   if (res.result == "1") {
                       angular.forEach(res.list, function (v, i) {
@@ -69,7 +71,7 @@
                             arr.push(v.card_id);
                         });
                     }
-                    dataFactory.action("api/plan/getCardList", "", null, { card_type: vm.c.tempcate.id, card_ids: arr,org_id:appSession.orgid })
+                    dataFactory.action("api/plan/getCardList", "", null, { card_type: vm.c.tempcate.id, card_ids: arr, org_id: appSession.orgid })
                     .then(function (res) {
                         if (res.result == "1") {
                             vm.c.cards = res.data;
@@ -107,7 +109,7 @@
                 points: [],
                 devices: [],
                 getorgs: function () {
-                    dataFactory.action("api/plan/selectOrgList?org_id="+appSession.orgid, "GET", null, {})
+                    dataFactory.action("api/plan/selectOrgList?org_id=" + appSession.orgid, "GET", null, {})
                 .then(function (res) {
                     if (res.result == "1") {
                         vm.o.orgs = res.data;
