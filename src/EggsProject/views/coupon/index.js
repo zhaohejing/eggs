@@ -21,6 +21,7 @@
             }
             //获取用户数据集，并且添加配置项
             vm.init = function () {
+                vm.table.checkModel = {};
                 vm.filter.pageNum = vm.table.pageConfig.currentPage;
                 vm.filter.pageSize = vm.table.pageConfig.itemsPerPage;
                 vm.filter.org_id = appSession.orgid;
@@ -71,7 +72,6 @@
                 })
             }
             vm.delete = function () {
-               
                 var ids = Object.getOwnPropertyNames(vm.table.checkModel);
                 if (ids.length != 1) {
                     abp.notify.warn("请选择一个操作对象");
@@ -83,7 +83,6 @@
                '确定要删除么?',//确认提示（可选参数）
                function (isConfirmed) {
                    if (isConfirmed) {
-                     
                        dataFactory.action("api/card/delete?card_id="+temp.card_id, "", null, {  }).then(function (res) {
                            abp.notify.success("删除成功");
                            vm.init();

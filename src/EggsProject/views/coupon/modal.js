@@ -41,6 +41,8 @@
             vm.type = [{ id: 1, name: "代金券" }, { id: 2, name: "折扣券" }, { id: 3, name: "礼品券" }];
            
             vm.save = function () {
+                vm.model.org_id = appSession.orgid;
+
                 if (vm.model.date_info_type==1) {
                     vm.model.fixed_begin_term = null;
                     vm.model.fixed_term = null;
@@ -63,7 +65,7 @@
                     if (res.result == "1") {
                         $uibModalInstance.close();
                     } else {
-                        abp.notify.error("保存失败,请重试");
+                        abp.notify.error(res.errMsg);
                     }
                 });
             };
@@ -77,7 +79,7 @@
                     if (res.result == "1") {
                         vm.gifts = res.data;
                     } else {
-                        abp.notify.error("保存失败,请重试");
+                        abp.notify.error(res.errMsg);
                     }
                 });
 

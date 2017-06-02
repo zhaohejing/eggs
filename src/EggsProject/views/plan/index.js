@@ -21,6 +21,7 @@
             }
             //获取用户数据集，并且添加配置项
             vm.init = function () {
+                vm.table.checkModel = {};
                 vm.filter.pageNum = vm.table.pageConfig.currentPage;
                 vm.filter.pageSize = vm.table.pageConfig.itemsPerPage;
                 vm.filter.org_id = appSession.orgid;
