@@ -11,7 +11,7 @@
             //提示对象
             vm.t = {
                 list: [], select: [], init: function () {
-                    dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999 })
+                    dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999,org_id:appSession.orgid })
               .then(function (res) {
                   if (res.result == "1") {
                       angular.forEach(res.list, function (v, i) {
@@ -69,7 +69,7 @@
                             arr.push(v.card_id);
                         });
                     }
-                    dataFactory.action("api/plan/getCardList", "", null, { card_type: vm.c.tempcate.id, card_ids: arr })
+                    dataFactory.action("api/plan/getCardList", "", null, { card_type: vm.c.tempcate.id, card_ids: arr,org_id:appSession.orgid })
                     .then(function (res) {
                         if (res.result == "1") {
                             vm.c.cards = res.data;

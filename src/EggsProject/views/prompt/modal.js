@@ -1,6 +1,6 @@
 ﻿angular.module('MetronicApp').controller('views.prompt.modal',
-    ['$scope', 'settings', '$uibModalInstance', 'model',  'dataFactory',
-        function ($scope, settings, $uibModalInstance, model, dataFactory) {
+    ['$scope', 'settings', '$uibModalInstance', 'model',  'dataFactory','appSession',
+        function ($scope, settings, $uibModalInstance, model, dataFactory, appSession) {
             $scope.$on('$viewContentLoaded', function () {
                 App.initAjax();
 
@@ -15,6 +15,7 @@
             }
 
             vm.save = function () {
+                vm.tips.org_id = appSession.orgid;
                 dataFactory.action(vm.url, "", null, vm.tips).then(function (res) {
                     if (res.result == "1") {
                         $uibModalInstance.close();
