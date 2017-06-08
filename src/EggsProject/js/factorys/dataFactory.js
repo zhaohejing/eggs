@@ -5,7 +5,7 @@
             if (method=="") {
                 method = "POST";
             }
-            var u = "http://jingjing.leftins.com:8080/";
+            var u = "http://101.201.53.25:10010/";
             url = u + url;
             if (!headers) {
                 headers = { 'Content-Type': 'application/json' };

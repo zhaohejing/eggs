@@ -12,17 +12,17 @@
 
     var handleLogin = function () {
         $('.form-horizontal input').keypress(function (e) {
-            if (e.which == 13) {
+            if (e.which === 13) {
                 if ($('.form-horizontal').validate().form()) {
-                    var url = "http://101.201.53.25:10001/api/efan/login";
+                    var url = "http://101.201.53.25:10010/api/efan/login";
                     var username = $("#userName").val();
                     var password = $("#pw").val();
                     if (!username || !password) {
                         o.show("请输入用户名或密码");
-                        return;
+                        return false;
                     }
-                    var md5pw = md5(password);
-                    var data = { "user_name": username, "pw": md5pw };
+                    var md5Pw = window.md5(password);
+                    var data = { "user_name": username, "pw": md5Pw };
                     $.ajax({
                         type: "Post",
                         url: url,
@@ -30,7 +30,7 @@
                         async: false,
                         dataType: "json",
                         success: function (res) {
-                            if (res.code == 200) {
+                            if (res.code === 200) {
                                 var val = { username: res.user_name, orgid: res.org_id, orgName: res.org_name };
                                 var temp = JSON.stringify(val);
                                 $.cookie("eggsResult", temp, {
@@ -40,7 +40,7 @@
                                 });
                                 window.location.href = "layout.html";
                             } else {
-                                han
+                                o.show(res.message);
                             }
                         }
                     });
@@ -50,11 +50,11 @@
         });
         $("#loginSubmit").click(function () {
             if ($('.form-horizontal').validate().form()) {
-                var url = "http://101.201.53.25:10001/api/efan/login";
+                var url = "http://101.201.53.25:10010/api/efan/login";
                 var username = $("#userName").val();
                 var password = $("#pw").val();
-                var md5pw = md5(password);
-                var data = { "userName": username, "pw": md5pw };
+                var md5Pw = window.md5(password);
+                var data = { "userName": username, "pw": md5Pw };
                 if (!username||!password) {
                     o.show("请输入用户名或密码");
                     return;
@@ -66,7 +66,7 @@
                     async: false,
                     dataType: "json",
                     success: function (res) {
-                        if (res.code == 200) {
+                        if (res.code === 200) {
                             var val = { username: res.user_name, orgid: res.org_id, orgName: res.org_name };
                             var temp = JSON.stringify(val);
                             $.cookie("eggsResult", temp, {
@@ -90,7 +90,7 @@
         //main function to initiate the module
         init: function () {
             var cookie = $.cookie("eggsResult");
-            if (cookie != "" && cookie != undefined) {
+            if (cookie !== "" && cookie != undefined) {
                 try {
                     var cook = $.parseJSON(cookie);
                     if (cook.username) {
