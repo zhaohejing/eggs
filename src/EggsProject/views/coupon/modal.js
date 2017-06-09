@@ -9,6 +9,7 @@
             vm.url = "";
             vm.model = {};
             vm.gift;
+            vm.tempTime = {};
             if (model.id) {
                 vm.url = "api/card/update";
             } else {
@@ -42,12 +43,11 @@
            
             vm.save = function () {
                 vm.model.org_id = appSession.orgid;
-
-                if (vm.model.date_info_type==1) {
+                if (vm.model.date_info_type == 1) {
                     vm.model.fixed_begin_term = null;
                     vm.model.fixed_term = null;
-                    vm.model.begin_timestamp = Math.round(vm.model.begin_timestamp.valueOf() / 1000);
-                    vm.model.end_timestamp = Math.round(vm.model.end_timestamp.valueOf() / 1000);
+                    vm.model.begin_timestamp = Math.round(vm.tempTime.left.valueOf() / 1000);
+                    vm.model.end_timestamp = Math.round(vm.tempTime.right.valueOf() / 1000);
                 } else if (vm.model.date_info_type == 2) {
                     vm.model.begin_timestamp = null;
                     vm.model.end_timestamp = null;
