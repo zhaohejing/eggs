@@ -16,9 +16,10 @@
                     dataFactory.action("api/tips/getTipsList", "", null, { pageNum: 1, pageSize: 999, org_id: appSession.orgid })
               .then(function (res) {
                   if (res.result == "1") {
-                      angular.forEach(res.list, function (v, i) {
-                          vm.t.list.push({ tips_id: v.id, tips_name: v.tips, ticked: false });
-                      })
+                      angular.forEach(res.list,
+                          function(v, i) {
+                              vm.t.list.push({ tips_id: v.id, tips_name: v.tips, ticked: false });
+                          });
                   }
               });
                 }

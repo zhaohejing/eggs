@@ -5,7 +5,7 @@
             if (method=="") {
                 method = "POST";
             }
-            var u = "http://101.201.53.25:10010/";
+            var u = abp.ajaxUrl;
             url = u + url;
             if (!headers) {
                 headers = { 'Content-Type': 'application/json' };

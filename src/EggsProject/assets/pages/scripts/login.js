@@ -1,4 +1,5 @@
 ﻿var Login = function () {
+    var ajaxUrl = "http://wxpay.dev.efanyun.com/yxht/";
     var o = {
         show: function (text) {
             $("#text").text(text);
@@ -14,7 +15,7 @@
         $('.form-horizontal input').keypress(function (e) {
             if (e.which === 13) {
                 if ($('.form-horizontal').validate().form()) {
-                    var url = "http://101.201.53.25:10010/api/efan/login";
+                    var url = ajaxUrl + "api/efan/login";
                     var username = $("#userName").val();
                     var password = $("#pw").val();
                     if (!username || !password) {
@@ -50,7 +51,7 @@
         });
         $("#loginSubmit").click(function () {
             if ($('.form-horizontal').validate().form()) {
-                var url = "http://101.201.53.25:10010/api/efan/login";
+                var url = url = ajaxUrl + "api/efan/login";
                 var username = $("#userName").val();
                 var password = $("#pw").val();
                 var md5Pw = window.md5(password);
