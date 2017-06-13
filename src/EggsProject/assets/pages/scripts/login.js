@@ -1,5 +1,5 @@
 ﻿var Login = function () {
-    var ajaxUrl = "http://wxpay.dev.efanyun.com/yxht/";
+    var ajaxUrl = "http://wx.dev.efanyun.com/yxht/";
     var o = {
         show: function (text) {
             $("#text").text(text);

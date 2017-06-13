@@ -8,7 +8,7 @@
 
     abp.pageLoadTime = new Date();
     abp.qiniuUrl = "";
-    abp.ajaxUrl = "http://wxpay.dev.efanyun.com/yxht/";
+    abp.ajaxUrl = "http://wx.dev.efanyun.com/yxht/";
     //Converts given path to absolute path using abp.appPath variable.
     abp.toAbsAppPath = function (path) {
         if (path.indexOf('/') == 0) {
