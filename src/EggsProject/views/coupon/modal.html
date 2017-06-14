@@ -34,8 +34,8 @@
                 <div class="col-xs-6">
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label">启用金额</label>
-                        <div class="col-md-9">
-                            <input type="number" class="form-control" placeholder="启用金额"  ng-readonly="vm.model.id>0"  ui-validate="'$value>0'"
+                        <div class="col-md-9"> 
+                            <input type="number" class="form-control" placeholder="启用金额" step="2"  ng-readonly="vm.model.id>0"  ui-validate="'$value>0'"
                                    ng-class="{'edited':vm.model.least_cost}" required ng-model="vm.model.least_cost">
                             <div class="form-control-focus"> </div>
                         </div>
@@ -45,7 +45,7 @@
                     <div class="form-group form-md-line-input">
                         <label class="col-md-3 control-label">减免金额</label>
                         <div class="col-md-9">
-                            <input type="number" class="form-control" placeholder="减免金额"   ng-readonly="vm.model.id>0" ui-validate="'$value>0'"
+                            <input type="number" class="form-control" placeholder="减免金额" step="2"  ng-readonly="vm.model.id>0" ui-validate="'$value>0'"
                                    ng-class="{'edited':vm.model.reduce_cost}" required ng-model="vm.model.reduce_cost">
                             <div class="form-control-focus"> </div>
                         </div>

@@ -61,6 +61,8 @@
                     vm.model.gift_id = vm.gift.gift_id;
                     vm.model.gift_name = vm.gift.gift_name;
                 }
+                vm.model.least_cost = vm.model.least_cost * 100;
+                vm.model.reduce_cost = vm.model.reduce_cost * 100;
                 dataFactory.action(vm.url, "", null, vm.model).then(function (res) {
                     if (res.result == "1") {
                         $uibModalInstance.close();
@@ -92,6 +94,8 @@
                     dataFactory.action("api/card/getCard?id=" + model.id, "GET", null, {}).then(function (res) {
                         if (res.result == "1") {
                             vm.model = res.data;
+                            vm.model.least_cost = vm.model.least_cost /100;
+                            vm.model.reduce_cost = vm.model.reduce_cost / 100;
                         } else {
                             abp.notify.error("获取失败,请重试");
                         }
