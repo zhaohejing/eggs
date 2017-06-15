@@ -54,7 +54,7 @@
                     });
                     modal.result.then(function(response) {
                         vm.init();
-                    })
+                    });
                 }
                 vm.edit = function() {
                     var id = Object.getOwnPropertyNames(vm.table.checkModel);
@@ -89,7 +89,7 @@
                             if (isConfirmed) {
                                 //...delete user 点击确认后执行
                                 //api/resource/delete
-                                dataFactory.action("api/tips/delete", "", null, { id: ids[0] })
+                                dataFactory.action("api/tips/delete?id="+ids[0], "", null, {})
                                     .then(function(res) {
                                         abp.notify.success("删除成功");
                                         vm.init();
