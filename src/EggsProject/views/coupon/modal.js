@@ -66,8 +66,13 @@
                     vm.model.gift_id = vm.gift.gift_id;
                     vm.model.gift_name = vm.gift.gift_name;
                 }
+                if (vm.model.least_cost <= vm.model.reduce_cost) {
+                    abp.notify.warn("减免金额要小于启用金额");
+                    return;
+                }
                 vm.model.least_cost = vm.model.least_cost * 100;
                 vm.model.reduce_cost = vm.model.reduce_cost * 100;
+             
                 dataFactory.action(vm.url, "", null, vm.model).then(function (res) {
                     if (res.result == "1") {
                         $uibModalInstance.close();
