@@ -15,6 +15,7 @@
             } else {
                 vm.url = "api/card/add";
             }
+            vm.saving = false;
             vm.date = {
                 leftopen: false,
                 rightopen: false,
@@ -42,6 +43,9 @@
             vm.type = [{ id: 1, name: "代金券" }, { id: 2, name: "折扣券" }, { id: 3, name: "礼品券" }];
            
             vm.save = function () {
+                if (vm.saving) {
+                    return ;
+                }
                 vm.saving = true;
                 vm.model.org_id = appSession.orgid;
                 if (vm.model.date_info_type == 1) {
