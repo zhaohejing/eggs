@@ -27,7 +27,7 @@
                    data="vm.table.data"
                    check-model="vm.table.checkModel"
                    display="vm.table.pageConfig.itemsPerPage"
-                   headers="场景名称,游戏,次数限制,价格,状态,参与情况(领奖/中奖/参与/着陆)"
+                   headers="场景名称,游戏,次数限制,价格,状态,参与情况(领奖/中奖/参与/核销)"
                    fields="scene_name,game_name,times,price,status,tips">
                 <tbody>
                     <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
@@ -45,7 +45,7 @@
                         </td>
                         <td>
                             <span>
-                                领奖:{{item.lingjiang}}/中奖:{{item.zhongjiang}}/参与:{{item.canyu}}/着陆:{{item.hexiao}}
+                                领奖:{{item.lingjiang}}/中奖:{{item.zhongjiang}}/参与:{{item.canyu}}/核销:{{item.hexiao}}
                             </span>
                         </td>
 
