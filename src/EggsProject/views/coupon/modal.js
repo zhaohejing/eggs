@@ -15,6 +15,7 @@
             } else {
                 vm.url = "api/card/add";
             }
+            vm.saving = false;
             vm.date = {
                 leftopen: false,
                 rightopen: false,
@@ -39,9 +40,13 @@
             }
 
             vm.gifts = [];
-            vm.type = [{ id: 1, name: "代金券" }, { id: 2, name: "折扣券" }, { id: 3, name: "礼品券" }];
+            vm.type = [{ id: 1, name: "代金券" }, { id: 2, name: "折扣券" }];
            
             vm.save = function () {
+                if (vm.saving) {
+                    return ;
+                }
+                vm.saving = true;
                 vm.model.org_id = appSession.orgid;
                 if (vm.model.date_info_type == 1) {
                     vm.model.fixed_begin_term = null;
@@ -61,12 +66,20 @@
                     vm.model.gift_id = vm.gift.gift_id;
                     vm.model.gift_name = vm.gift.gift_name;
                 }
+             //   if (vm.model.least_cost <= vm.model.reduce_cost) {
+             //       abp.notify.warn("减免金额要小于启用金额");
+              //      return;
+             //   }
                 vm.model.least_cost = vm.model.least_cost * 100;
                 vm.model.reduce_cost = vm.model.reduce_cost * 100;
+             
                 dataFactory.action(vm.url, "", null, vm.model).then(function (res) {
                     if (res.result == "1") {
                         $uibModalInstance.close();
                     } else {
+  		vm.model.least_cost = vm.model.least_cost/ 100;
+                vm.model.reduce_cost = vm.model.reduce_cost / 100;
+		vm.saving=false;
                         abp.notify.error(res.errMsg);
                     }
                 });
@@ -81,6 +94,7 @@
                     if (res.result == "1") {
                         vm.gifts = res.data;
                     } else {
+  
                         abp.notify.error(res.errMsg);
                     }
                 });

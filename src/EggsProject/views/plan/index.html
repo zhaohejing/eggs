@@ -22,45 +22,43 @@
                 <!--<button class="btn btn-primary blue" ng-click="vm.delete()"><i class="fa fa-times"></i> 删除</button>-->
             </div>
         </div>
-      <div class="row">
-          <table object-table
-                 data="vm.table.data"
-                 check-model="vm.table.checkModel"
-                 display="vm.table.pageConfig.itemsPerPage"
-                 headers="场景名称,游戏,次数限制,价格,状态,参与情况(领奖/中奖/参与/着陆)"
-                 fields="scene_name,game_name,times,price,status,tips">
-              <tbody>
-                  <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
-                      <td>
-                          <input type="checkbox" ng-model="::item.checked"  
-                                 ng-click="$event.stopPropagation(); checkOne(item)" />
-                      </td>
-                      <td show-td item="item" name="scene_name"></td>
-                      <td show-td item="item" name="game_name"></td>
-                      <td show-td item="item" name="times"></td>
-                      <td show-td item="item" name="price"></td>
-                      <td>
-                          <span ng-show="item.status==1">上架</span>
-                          <span ng-show="item.status==0">下架</span>
-                      </td>
-                      <td show-td item="item" name="tips"></td>
-                    
-                  </tr>
-              </tbody>
-          </table>
-          <!--分页-->
-          <nav class="paging">
-              <obj-pagination conf="vm.table.pageConfig"></obj-pagination>
-          </nav>
+        <div class="row">
+            <table object-table
+                   data="vm.table.data"
+                   check-model="vm.table.checkModel"
+                   display="vm.table.pageConfig.itemsPerPage"
+                   headers="场景名称,游戏,次数限制,价格,状态,参与情况(领奖/中奖/参与/核销)"
+                   fields="scene_name,game_name,times,price,status,tips">
+                <tbody>
+                    <tr ng-click="$owner.showeditinfo(item);setSelected(item)">
+                        <td>
+                            <input type="checkbox" ng-model="::item.checked"
+                                   ng-click="$event.stopPropagation(); checkOne(item)" />
+                        </td>
+                        <td show-td item="item" name="scene_name"></td>
+                        <td show-td item="item" name="game_name"></td>
+                        <td show-td item="item" name="times"></td>
+                        <td show-td item="item" name="price"></td>
+                        <td>
+                            <span ng-show="item.status==1">上架</span>
+                            <span ng-show="item.status==0">下架</span>
+                        </td>
+                        <td>
+                            <span>
+                                领奖:{{item.lingjiang}}/中奖:{{item.zhongjiang}}/参与:{{item.canyu}}/核销:{{item.hexiao}}
+                            </span>
+                        </td>
 
-      </div>
+                    </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <nav class="paging">
+                <obj-pagination conf="vm.table.pageConfig"></obj-pagination>
+            </nav>
+        </div>
     </div>
 </div>
-
-
-
-
-
 
 
 
