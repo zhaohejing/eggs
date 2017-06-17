@@ -1,6 +1,6 @@
 ﻿angular.module('MetronicApp').controller('views.coupon.modal',
-    ['$scope', 'settings', '$uibModalInstance', 'model',  'dataFactory','appSession',
-        function ($scope, settings, $uibModalInstance, model, dataFactory, appSession) {
+    ['$scope', 'settings', '$uibModalInstance', 'model',  'dataFactory','appSession','$filter',
+        function ($scope, settings, $uibModalInstance, model, dataFactory, appSession, $filter) {
             $scope.$on('$viewContentLoaded', function () {
                 App.initAjax();
 
@@ -51,8 +51,13 @@
                 if (vm.model.date_info_type == 1) {
                     vm.model.fixed_begin_term = null;
                     vm.model.fixed_term = null;
-                    vm.model.begin_timestamp = Math.round(vm.tempTime.left.valueOf() / 1000);
-                    vm.model.end_timestamp = Math.round(vm.tempTime.right.valueOf() / 1000);
+                   ;
+                    var dayStart = Date.parse($filter('date')(vm.tempTime.left, 'yyyy-MM-dd')+" 00:00:00");//2016-12-29 0:0:0
+                    var temp = Date.parse($filter('date')(vm.tempTime.right, 'yyyy-MM-dd')+" 23:59:59");//2016-12-29 0:0:0
+                  //  var dayEnd = new Date().setTime((temp / 1000 + 24 * 60 * 60 - 1) * 1000);
+
+                    vm.model.begin_timestamp = Math.round(dayStart / 1000);
+                    vm.model.end_timestamp = Math.round(temp / 1000);
                 } else if (vm.model.date_info_type == 2) {
                     vm.model.begin_timestamp = null;
                     vm.model.end_timestamp = null;
