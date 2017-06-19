@@ -137,7 +137,7 @@
                 </div>
             
             </div>
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-xs-12">
                     <div class="form-group form-md-radios">
                         <label>有效期</label>
@@ -150,7 +150,7 @@
                                     <span class="box"></span> 固定有效期
                                 </label>
                             </div>
-                            <!--<div class="md-radio">
+                            <div class="md-radio">
                                 <input type="radio" id="radio7" name="radio2" value="2" class="md-radiobtn" ng-model="vm.model.date_info_type">
                                 <label for="radio7">
                                     <span></span>
@@ -165,19 +165,20 @@
                                     <span class="check"></span>
                                     <span class="box"></span> 领取后多少天内有效
                                 </label>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div ng-if="vm.model.date_info_type==1" class="row">
+            </div>-->
+            <div  class="row">
+             
                 <div class="col-xs-12">
                     <div class="col-md-6">
                         <div class="input-icon right">
                             <p class="input-group">
                                 <input type="text" class="form-control" placeholder="开始时间"
                                        uib-datepicker-popup="yyyy/MM/dd" readonly
-                                       ng-model="vm.tempTime.left"
+                                       ng-model="vm.tempTime.left" 
                                        is-open="vm.date.leftopen"
                                        datepicker-options="vm.date.dateOptions"
                                        ng-required="true"
@@ -186,7 +187,7 @@
                                        clear-text="清除"
                                        close-text="关闭" />
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default"
+                                    <button type="button" class="btn btn-default" 
                                             ng-click="vm.date.openleft()">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </button>
@@ -198,7 +199,7 @@
                         <div class="input-icon right">
                             <p class="input-group">
                                 <input type="text" class="form-control" placeholder="结束时间"
-                                       uib-datepicker-popup="yyyy/MM/dd" readonly ng-model="vm.tempTime.right"
+                                       uib-datepicker-popup="yyyy/MM/dd" readonly ng-model="vm.tempTime.right" 
                                        is-open="vm.date.rightopen"
                                        datepicker-options="vm.date.dateOptions"
                                        datetimepicker-neutral-timezone

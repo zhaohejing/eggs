@@ -32,9 +32,11 @@
                     startingDay: 1
                 },
                 openleft: function () {
+                   
                     vm.date.leftopen = !vm.date.leftopen;
                 },
                 openright: function () {
+                 
                     vm.date.rightopen = !vm.date.rightopen;
                 }
             }
@@ -48,6 +50,7 @@
                 }
                 vm.saving = true;
                 vm.model.org_id = appSession.orgid;
+                vm.model.date_info_type = 1;
                 if (vm.model.date_info_type == 1) {
                     vm.model.fixed_begin_term = null;
                     vm.model.fixed_term = null;
